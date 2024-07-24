@@ -1,23 +1,62 @@
-import { useState } from 'react'
-import logo from '../assets/grandmagames.png'
+import React, { useState } from 'react';
+import logo from '../assets/grandmagames.png';
 //import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isMenuToggled, setIsMenuToggled] = useState(false);
+
   return (
     <nav className='relative z-50 transition duration-700 bg-white'>
+      <div className='flex justify-between items-center p-4'>
+        <img src={logo} alt="The Grandma Games" className="-ml-4 w-[125px] sm:w-[125px] md:w-[125px]" />
 
-      <div className='flex justify-between p-4'>
-          <img src={logo} alt="The Grandma Games" className="-ml-4 w-[125px] sm:w-[125px] md:w-[125px]"/>
-        <ul className="flex flex-row p-4 md:flex space-y-5 ml-8">
+        <ul className="hidden md:flex flex-row p-4 mt-6 space-x-14 mr-16">
           <li>About</li>
           <li>Trivia</li>
           <li>Connect 4</li>
           <li>Memory Lane</li>
           <li>Tik Tak Toe</li>
         </ul>
-      </div>
-    </nav>
-  )
-}
 
-export default Navbar
+        {/*toggling function on small*/}
+
+        <div
+          className="md:hidden rounded-full hover:bg-gray-200 p-2 cursor-pointer"
+          onClick={() => setIsMenuToggled(!isMenuToggled)}
+        >
+          {!isMenuToggled ? (
+            // Display is Menu Open Icon - Menu is Closed
+            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
+            </svg>
+          ) : (
+            // Display a Menu Close Icon
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          )}
+        </div>
+      </div>
+
+      {/*toggle opened on small screens*/}
+
+      {isMenuToggled && (
+                <div className="flex flex-col md:hidden bg-white shadow-md absolute animate-slide-in right-0">
+                        <p className="flex font-medium items-center cursor-pointer px-4 py-3 hover:bg-gray-200">
+                            Hotels
+                        </p>
+
+                        <p className="flex font-medium items-center cursor-pointer px-4 py-3 hover:bg-gray-200">
+                            Restaurants
+                        </p>
+
+                        <p className="flex font-medium items-center cursor-pointer px-4 py-3 hover:bg-gray-200">
+                            Attractions
+                        </p>
+                </div>
+            )}
+    </nav>
+  );
+};
+
+export default Navbar;
