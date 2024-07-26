@@ -3,6 +3,28 @@ import logo from '../assets/slicedUp.gif';
 import { motion } from 'framer-motion'
 //import { Link } from "react-router-dom";
 
+const containerVariants = {
+  hidden: { opacity: 0, x: '250px' },
+  visible: {
+    opacity: 1,
+    x: '0px',
+    transition: {
+      staggerChildren: 0.2, // Adjust delay between animations
+      delayChildren: 0.2, // Optional: delay before starting animation
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: 80 }, // Adjust x for the initial position
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: 'spring', stiffness: 90 },
+  },
+};
+
+
 const Navbar = () => {
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
@@ -12,14 +34,51 @@ const Navbar = () => {
         <img src={logo} alt="The Grandma Games" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px]" />
 
         <motion.ul className="hidden md:flex flex-row p-4 space-x-14 mr-16"
-          initial={{ y: '-250px'}}
-          animate={{ y: '0px'}}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+
         >
-          <li>About</li>
-          <li>Trivia</li>
-          <li>Connect 4</li>
-          <li>Memory Lane</li>
-          <li>Tik Tak Toe</li>
+          <motion.button
+          variants={itemVariants}
+            whileHover={{
+              scale: 1.1,
+              color: '#4A773C',
+            }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >About</motion.button>
+          <motion.button
+          variants={itemVariants}
+            whileHover={{
+              scale: 1.1,
+              color: '#4A773C'
+            }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >Trivia</motion.button>
+          <motion.button
+          variants={itemVariants}
+            whileHover={{
+              scale: 1.1,
+              color: '#4A773C'
+            }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >Connect 4</motion.button>
+          <motion.button
+          variants={itemVariants}
+            whileHover={{
+              scale: 1.1,
+              color: '#4A773C'
+            }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >Memory Lane</motion.button>
+          <motion.button
+          variants={itemVariants}
+            whileHover={{
+              scale: 1.1,
+              color: '#4A773C'
+            }}
+            transition={{ type: 'spring', stiffness: 150 }}
+          >Tik Tak Toe</motion.button>
         </motion.ul>
 
         <div className="relative md:hidden">
