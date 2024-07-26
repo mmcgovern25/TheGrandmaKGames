@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../assets/slicedUp.gif';
+import { motion } from 'framer-motion'
 //import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -10,13 +11,16 @@ const Navbar = () => {
       <div className='flex justify-between items-center p-4'>
         <img src={logo} alt="The Grandma Games" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px]" />
 
-        <ul className="hidden md:flex flex-row p-4 space-x-14 mr-16">
+        <motion.ul className="hidden md:flex flex-row p-4 space-x-14 mr-16"
+          initial={{ y: '-250px'}}
+          animate={{ y: '0px'}}
+        >
           <li>About</li>
           <li>Trivia</li>
           <li>Connect 4</li>
           <li>Memory Lane</li>
           <li>Tik Tak Toe</li>
-        </ul>
+        </motion.ul>
 
         <div className="relative md:hidden">
           <div
