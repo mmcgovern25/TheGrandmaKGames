@@ -32,7 +32,7 @@ const Hero = () => {
         transition={{ duration: 1, delay: 1 }}
         className='bruno-ace-sc-regular text-center text-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4'
       >
-        The Grandma K Games
+        The Grandma K Games - test
       </motion.h1>
 
       <motion.button
