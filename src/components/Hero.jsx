@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ShamrockSVG from './ShamrockSVG';
 
 const buttonVariants = {
   hover: {
@@ -16,24 +17,29 @@ const buttonVariants = {
 
 const Hero = () => {
   return (
-    <div className='h-screen flex flex-col justify-center items-center px-4'>
+    <div className='mt-20 flex flex-col justify-center items-center px-4'>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className='bruno-ace-sc-regular text-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4'
+        className='bruno-ace-sc-regular text-black text-1xl sm:text-2xl md:text-3xl lg:text-4xl sm:mb-2 md:mb-4'
       >
         Welcome to
       </motion.div>
 
-      <motion.h1
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1 }}
-        className='bruno-ace-sc-regular text-center text-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4'
-      >
-        The Grandma K Games - testing
-      </motion.h1>
+      <div className="flex items-center">
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+          className='bruno-ace-sc-regular text-center text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-2'
+        >
+          The Grandma K Games
+        </motion.h1>
+
+        <ShamrockSVG color={'green'} className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-1 lg:mb-3 lg:ml-2" />
+      </div>
+
 
       <motion.button
         variants={buttonVariants}
