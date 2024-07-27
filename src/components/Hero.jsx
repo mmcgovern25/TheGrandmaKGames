@@ -15,6 +15,19 @@ const buttonVariants = {
   }
 }
 
+const scrollVariants = {
+  animate: {
+    x: ['50%', '-50%'],
+    transition: {
+      x: {
+        repeat: Infinity,
+        repeatType: 'loop',
+        duration: 10,  // Adjust the duration for the speed of the scrolling
+        ease: 'linear'
+      }
+    }
+  }
+};
 
 
 const Hero = () => {
@@ -50,6 +63,18 @@ const Hero = () => {
       >
         Play
       </motion.button>
+
+      <div className="overflow-hidden whitespace-nowrap">
+      <motion.div
+        className="inline-block"
+        variants={scrollVariants}
+        animate="animate"
+      >
+        <span className="text-2xl font-bold text-gray-700">
+          Featuring the coolest family in the world: Kara, Bri, Mike, Jess, Brendan, Tommy, Jill, Matt, Sean, Scottie, Colleen, Samantha, Katie.
+        </span>
+      </motion.div>
+    </div>
     </div>
   );
 };
