@@ -15,6 +15,8 @@ const buttonVariants = {
   }
 }
 
+
+
 const Hero = () => {
   return (
     <div className='mt-20 flex flex-col justify-center items-center px-4'>
@@ -37,7 +39,7 @@ const Hero = () => {
           The Grandma K Games
         </motion.h1>
 
-        <ShamrockSVG color={'green'} className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-1 lg:mb-3 lg:ml-2" />
+        <ShamrockSVG className="stroke w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 mb-1 lg:mb-3 lg:ml-2" />
       </div>
 
 

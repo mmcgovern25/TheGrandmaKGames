@@ -6,6 +6,13 @@
   font-style: normal;
 }
 
+.stroke {
+  stroke: #1bac08;
+  stroke-width: 5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
