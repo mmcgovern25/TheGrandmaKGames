@@ -29,7 +29,7 @@ const Navbar = () => {
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
   return (
-    <nav className='relative z-50 transition duration-700 bg-white'>
+    <nav className='relative z-50 transition duration-700 bg-white border-b-2'>
       <div className='flex justify-between items-center p-4'>
         <img src={logo} alt="The Grandma Games" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px]" />
 
