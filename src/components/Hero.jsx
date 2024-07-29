@@ -33,7 +33,7 @@ const scrollVariants = {
 
 const Hero = () => {
   return (
-    <div className=''>
+    <div className='mb-80'>
       <div className='mt-20 flex flex-col justify-center items-center px-4'>
         <motion.div
           initial={{ opacity: 0 }}
