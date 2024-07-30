@@ -144,6 +144,15 @@
   opacity: 1;
 }
 
+/* FeaturedGames.css */
 .swiper-pagination {
-  color: #1bac08;
+  color: #1bac08 !important;
+}
+
+.swiper-pagination-bullet {
+  background: #1bac08 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #1bac08 !important;
 }

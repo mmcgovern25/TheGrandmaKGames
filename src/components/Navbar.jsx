@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../assets/slicedUp.gif';
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import { night, day } from '../assets'
 //import { Link } from "react-router-dom";
 
 const containerVariants = {
@@ -108,7 +109,10 @@ const Navbar = () => {
             </div>
           )}
         </div>
+        <img src={night} alt="night" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px] cursor-pointer"/>
+      <img src={day} alt="day" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px] cursor-pointer"/>
       </div>
+
     </nav>
   );
 };
