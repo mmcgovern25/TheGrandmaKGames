@@ -1,6 +1,17 @@
 import React from 'react';
-import '../extraCSS/FeaturedGames.css';
-import { featuredGamesImg } from '../constants/constants';
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { featuredGamesImg } from '../constants/constants.js';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import '../extraCSS/FeaturedGames.css';// Import Swiper styles
+import SwiperCore from 'swiper';
+
+// Install Swiper modules
+SwiperCore.use([Navigation, EffectCoverflow, Pagination]);
 
 const FeaturedGames = () => {
   return (
@@ -15,30 +26,43 @@ const FeaturedGames = () => {
           </div>
         </div>
 
-        <div className="swiper-container">
-          <div className="swiper-wrapper">
-            {featuredGamesImg.map((featuredGame, index) => (
-              <div className="swiper-slide card" key={index}>
+        <Swiper
+          effect={ 'coverflow'}
+          loop={true}
+          grabCursor={ true }
+          centeredSlides={ true }
+          slidesPerView={'auto'}
+          coverflowEffect={
+            {
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5
+            }
+          }
+          pagination={{ el: '.swiper-pagination', clickable: true }}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}
+          className="swiper-container"
+        >
+          {featuredGamesImg.map((featuredGame, index) => (
+            <SwiperSlide key={index}>
+              <div className="swiper-slide card">
                 <img src={featuredGame.icon} className="card-img" alt={featuredGame.name} />
                 <div className="card-body">
                   <h1 className="card-title">{featuredGame.name}</h1>
                   <p className="card-info">{featuredGame.description}</p>
-                  <button
-                    className="card-btn"
-                  >
-                    Play
-                  </button>
+                  <button className="card-btn">Play</button>
                 </div>
               </div>
-            ))}
-          </div>
+            </SwiperSlide>
+          ))}
 
           <button className="swiper-button-prev"></button>
           <button className="swiper-button-next"></button>
-        </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-        <script src="explore.js"></script>
+        </Swiper>
       </div>
     </>
   );
