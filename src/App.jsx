@@ -13,8 +13,9 @@ function App() {
     <>
       <Navbar/>
       <Hero/>
-      <About/>
       <FeaturedGames/>
+      <About/>
+
     </>
   )
 }

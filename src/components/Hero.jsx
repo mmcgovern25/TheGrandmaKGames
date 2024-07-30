@@ -33,7 +33,7 @@ const scrollVariants = {
 
 const Hero = () => {
   return (
-    <div className='mb-80'>
+    <div className='mb-12'>
       <div className='mt-20 flex flex-col justify-center items-center px-4'>
         <motion.div
           initial={{ opacity: 0 }}
@@ -90,7 +90,7 @@ const Hero = () => {
         >
           {/* Duplicate text */}
           <span className="text-2xl font-bold text-gray-400 mr-8">
-            Featuring the coolest family in the world: Kara, Bri, Mike, Jess, Brendan, Tommy, Jill, Matt, Sean, Scottie, Colleen, Samantha, Katie, Auntie Ellen, Uncle Tom, Auntie Sue, Uncle John, Auntie Deb, Uncle Dan, Auntie Cheryl, Uncle Kevin, Auntie Laurie, Uncle Sam. Last but not least: Grandma & Grandpa!
+            Featuring the Big 13: Kara, Bri, Mike, Jess, Brendan, Tommy, Jill, Matt, Sean, Scottie, Colleen, Samantha, and Katie.
           </span>
 
         </motion.div>

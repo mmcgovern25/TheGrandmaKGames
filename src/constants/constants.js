@@ -3,7 +3,8 @@ import {
   memory,
   trivia,
   connect4,
-  tiktaktoe
+  tiktaktoe,
+  test,
 
 } from "../assets"
 

@@ -31,11 +31,12 @@
 
 .swiper-slide {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center; /* Center the card */
   align-items: center;
+  width: 300px; /* Ensure width is auto for responsive slides */
+  height: 300px; /* Adjust height as necessary */
 }
+
 
 .swiper-button-prev,
 .swiper-button-next {
@@ -43,7 +44,7 @@
   top: 55%;
   transform: translateY(-50%);
   padding: 20px;
-  color: #ffffff;
+  color: #1bac08;
   background-color: transparent;
   border: none;
   padding: 20px 20px;
@@ -51,18 +52,10 @@
   cursor: pointer;
 }
 
-.swiper-button-prev {
-  left: 14px;
-}
-
-.swiper-button-next {
-  right: 13px;
-}
-
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   background-color: transparent;
-  color: #FF5656;
+  color: #1bac08;
 }
 
 /* Card */
@@ -72,7 +65,7 @@
   height: auto;
   border-radius: 20px;
   overflow: hidden;
-  border: 8px solid #6A5ACD;
+  border: 8px solid #1bac08;
   position: relative;
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
@@ -82,7 +75,7 @@
   height: 100%;
   object-fit: cover;
   overflow: hidden;
-  border-radius: 15px solid #6A5ACD;
+  border-radius: 15px solid #1bac08;
   transition: transform 0.3s ease;
 }
 
@@ -121,7 +114,7 @@
 }
 
 .card-btn {
-  color: #FF5656;
+  color: #1bac08;;
   background-color: #ffffff;
   padding: 10px 20px;
   width: 120px;
@@ -135,7 +128,7 @@
 
 .card-btn:hover {
   color: #ffffff;
-  background-color: #FF5656;
+  background-color: #1bac08;
 }
 
 .card:hover .card-img {
@@ -149,4 +142,8 @@
 
 .card.active .card-body {
   opacity: 1;
+}
+
+.swiper-pagination {
+  color: #1bac08;
 }
