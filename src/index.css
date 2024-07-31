@@ -1,7 +1,15 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+
+.container {
+
+  background: #ced8ff;
+  transition: background-color 0.5s;
+}
+
+.container.dark {
+  background: #222
+}
 
 .bruno-ace-sc-regular {
   font-family: "Bruno Ace SC", sans-serif;

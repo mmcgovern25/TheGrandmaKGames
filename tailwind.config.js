@@ -10,20 +10,24 @@ module.exports = {
         mmd: "860px",
       },
       keyframes: {
-        "slide-in": {
+        "slide-down": {
           "0%": {
-            "-webkit-transform": "translateX(120%)",
-            transform: "translateX(120%)",
+            opacity: 0,
+            "-webkit-transform": "translate(-50%, -100%)",
+            transform: "translate(-50%, -100%)",
           },
           "100%": {
-            "-webkit-transform": "translateX(0%)",
-            transform: "translateX(0%)",
+            opacity: 1,
+            "-webkit-transform": "translate(-50%, 0)",
+            transform: "translate(-50%, 0)",
           },
         },
       },
       animation: {
-        "slide-in": "slide-in .2s ease-out",
+        "slide-down": "slide-down .2s ease-out",
       },
+
+
     },
   },
   plugins: [

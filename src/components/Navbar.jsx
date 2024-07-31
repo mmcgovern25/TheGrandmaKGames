@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../assets/slicedUp.gif';
 import { motion } from 'framer-motion';
-import { night, day } from '../assets'
-//import { Link } from "react-router-dom";
+import { night, day } from '../assets';
 
 const containerVariants = {
   hidden: { opacity: 0, x: '250px' },
@@ -10,14 +9,14 @@ const containerVariants = {
     opacity: 1,
     x: '0px',
     transition: {
-      staggerChildren: 0.2, // Adjust delay between animations
-      delayChildren: 0.2, // Optional: delay before starting animation
+      staggerChildren: 0.2,
+      delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, x: 80 }, // Adjust x for the initial position
+  hidden: { opacity: 0, x: 80 },
   visible: {
     opacity: 1,
     x: 0,
@@ -25,12 +24,17 @@ const itemVariants = {
   },
 };
 
-
-const Navbar = () => {
+const Navbar = ({ theme, setTheme }) => {
   const [isMenuToggled, setIsMenuToggled] = useState(false);
 
+  const toggle_mode = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  const buttonTextClass = theme === 'light' ? 'text-green-700' : 'text-white';
+
   return (
-    <nav className='relative z-50 transition duration-700 bg-white border-b-2'>
+    <nav className={`relative z-50 transition duration-700 border-b-2 ${theme === 'light' ? 'bg-white' : 'bg-black'}`}>
       <div className='flex justify-between items-center p-4'>
         <img src={logo} alt="The Grandma Games" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px]" />
 
@@ -38,80 +42,57 @@ const Navbar = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-
         >
-          <motion.button
-          variants={itemVariants}
-            whileHover={{
-              scale: 1.1,
-              color: '#4A773C',
-            }}
-            transition={{ type: 'spring', stiffness: 150 }}
-          >About</motion.button>
-          <motion.button
-          variants={itemVariants}
-            whileHover={{
-              scale: 1.1,
-              color: '#4A773C'
-            }}
-            transition={{ type: 'spring', stiffness: 150 }}
-          >Trivia</motion.button>
-          <motion.button
-          variants={itemVariants}
-            whileHover={{
-              scale: 1.1,
-              color: '#4A773C'
-            }}
-            transition={{ type: 'spring', stiffness: 150 }}
-          >Connect 4</motion.button>
-          <motion.button
-          variants={itemVariants}
-            whileHover={{
-              scale: 1.1,
-              color: '#4A773C'
-            }}
-            transition={{ type: 'spring', stiffness: 150 }}
-          >Memory Lane</motion.button>
-          <motion.button
-          variants={itemVariants}
-            whileHover={{
-              scale: 1.1,
-              color: '#4A773C'
-            }}
-            transition={{ type: 'spring', stiffness: 150 }}
-          >Tik Tak Toe</motion.button>
+          {['About', 'Trivia', 'Connect 4', 'Memory Lane', 'Tik Tak Toe'].map((item, index) => (
+            <motion.button
+              key={index}
+              className={buttonTextClass}
+              variants={itemVariants}
+              whileHover={{
+                scale: 1.1,
+                color: '#4A773C',
+              }}
+              transition={{ type: 'spring', stiffness: 150 }}
+            >
+              {item}
+            </motion.button>
+          ))}
         </motion.ul>
 
-        <div className="relative md:hidden">
-          <div
-            className="rounded-full hover:bg-gray-200 p-2 cursor-pointer"
-            onClick={() => setIsMenuToggled(!isMenuToggled)}
-          >
-            {!isMenuToggled ? (
-              // Display is Menu Open Icon - Menu is Closed
-              <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
-              </svg>
-            ) : (
-              // Display a Menu Close Icon
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            )}
-          </div>
-          {isMenuToggled && (
-            <div className="flex flex-col md:hidden bg-white shadow-md absolute top-full right-0 animate-slide-in rounded">
-              <p className="flex font-medium justify-center items-center cursor-pointer w-[200px] px-4 py-5 hover:bg-gray-200">About</p>
-              <p className="flex font-medium justify-center items-center cursor-pointer w-[200px] px-4 py-5 hover:bg-gray-200">Trivia</p>
-              <p className="flex font-medium justify-center items-center cursor-pointer w-[200px] px-4 py-5 hover:bg-gray-200">Connect 4</p>
-              <p className="flex font-medium justify-center items-center cursor-pointer w-[200px] px-4 py-5 hover:bg-gray-200">Memory Lane</p>
-              <p className="flex font-medium justify-center items-center cursor-pointer w-[200px] px-4 py-5 hover:bg-gray-200">Tik-Tak-Toe</p>
+
+          <img onClick={toggle_mode} src={theme === 'light' ? night : day} alt="Toggle Theme" className="order-2 md:order-1 mr-4 w-[35px] sm:w-[40px] md:w-[45px] cursor-pointer" />
+
+          <div className="relative md:hidden order-1 md:order-2">
+            <div
+              className="rounded-full hover:bg-gray-200 p-2 cursor-pointer"
+              onClick={() => setIsMenuToggled(!isMenuToggled)}
+            >
+              {!isMenuToggled ? (
+                <svg className={`h-6 w-6 ${theme === 'light' ? 'text-black' : 'text-white'}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
             </div>
-          )}
+            {isMenuToggled && (
+  <div className={`flex flex-col ${theme === 'light' ? 'bg-white' : 'bg-black'} shadow-md absolute top-full left-1/2 transform -translate-x-1/2 animate-slide-down rounded`}>
+
+    {['About', 'Trivia', 'Connect 4', 'Memory Lane', 'Tik-Tak-Toe'].map((item, index) => (
+      <p
+        key={index}
+        className={`flex font-medium justify-center items-center cursor-pointer w-[200px] px-4 py-5 ${theme === 'light' ? 'hover:bg-gray-200' : 'hover:bg-gray-700'}  ${buttonTextClass}`}
+      >
+        {item}
+      </p>
+    ))}
+  </div>
+)}
+
+          </div>
         </div>
-        <img src={night} alt="night" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px] cursor-pointer"/>
-      <img src={day} alt="day" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px] cursor-pointer"/>
-      </div>
 
     </nav>
   );
