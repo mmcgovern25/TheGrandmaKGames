@@ -48,10 +48,6 @@ const Navbar = ({ theme, setTheme }) => {
               key={index}
               className={buttonTextClass}
               variants={itemVariants}
-              whileHover={{
-                scale: 1.1,
-                color: '#4A773C',
-              }}
               transition={{ type: 'spring', stiffness: 150 }}
             >
               {item}
