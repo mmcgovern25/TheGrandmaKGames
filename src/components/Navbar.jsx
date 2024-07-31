@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from '../assets/slicedUp.gif';
 import { motion } from 'framer-motion';
 import { night, day } from '../assets';
+import { Link } from 'react-router-dom';
 
 const containerVariants = {
   hidden: { opacity: 0, x: '250px' },
