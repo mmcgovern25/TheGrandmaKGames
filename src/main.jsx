@@ -8,11 +8,13 @@ import MemoryLane from './pages/MemoryLane.jsx';
 import TikTakToe from './pages/TikTakToe.jsx';
 import Trivia from './pages/Trivia.jsx';
 import Root from './pages/Root.jsx';
+import Error from './pages/Error.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <Error />,
     children: [
       {path: '/', element: <App /> },
       {path: '/connect4', element: <Connect4 />},
