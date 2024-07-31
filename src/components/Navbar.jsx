@@ -64,15 +64,15 @@ const Navbar = ({ theme, setTheme }) => {
 
           <div className="relative md:hidden order-1 md:order-2">
             <div
-              className="rounded-full hover:bg-gray-200 p-2 cursor-pointer"
+              className={`rounded-full ${theme === 'light' ? 'hover:bg-gray-200' : ''}  p-2 cursor-pointer`}
               onClick={() => setIsMenuToggled(!isMenuToggled)}
             >
               {!isMenuToggled ? (
-                <svg className={`h-6 w-6 ${theme === 'light' ? 'text-black' : 'text-white'}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className={`h-6 w-6 ${theme === 'light' ? 'text-green-700' : 'text-white'}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
                 </svg>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${theme === 'light' ? 'text-green-700' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               )}
