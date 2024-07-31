@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+/* index.css */
 
-.container {
+/* Default theme (light) */
 
-  background: #ced8ff;
-  transition: background-color 0.5s;
+.hero.light {
+  background-color: #f0f0f0;
+  color: #000;
 }
 
-.container.dark {
-  background: #222
+.hero.dark {
+  background-color: #333;
+  color: #fff;
 }
 
 .bruno-ace-sc-regular {

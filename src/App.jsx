@@ -13,12 +13,11 @@ function App() {
 
 
   return (
-    <div className={`${theme}`}>
+    <div className={`hero ${theme}`}>
       <Navbar theme={theme} setTheme={setTheme}/>
       <Hero/>
       <FeaturedGames/>
       <About/>
-
     </div>
   )
 }
