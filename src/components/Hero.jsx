@@ -60,7 +60,7 @@ const Hero = () => {
         <motion.button
           variants={buttonVariants}
           whileHover="hover"
-          className='px-4 py-2 sm:px-6 sm:py-3 bg-blue-500 text-white rounded'
+          className='px-4 py-2 sm:px-6 sm:py-3 bg-[#1bac08] text-white rounded'
         >
           Play
         </motion.button>
@@ -80,7 +80,7 @@ const Hero = () => {
     // Adjust height to cover the entire viewport height
           overflow: 'hidden' // Hide any overflow
         }}
-        className="mt-10 sm:mt-14 whitespace-nowrap"
+        className="mt-6 sm:mt-15 md:mt-[2rem] lg:mt-[1.9rem]  whitespace-nowrap"
       >
         <motion.div
           initial='initial'
@@ -88,9 +88,8 @@ const Hero = () => {
           animate="animate"
           className="flex"
         >
-          {/* Duplicate text */}
           <span className="text-2xl font-bold text-gray-400 mr-8">
-            Featuring the Big 13: Kara, Bri, Mike, Jess, Brendan, Tommy, Jill, Matt, Sean, Scottie, Colleen, Samantha, and Katie.
+            Featuring the Big 13: Kara, Bri, Mike, Jess, Brendan, Tommy, Jill, Matt, Sean, Scottie, Colleen, Samantha, and Katie!
           </span>
 
         </motion.div>

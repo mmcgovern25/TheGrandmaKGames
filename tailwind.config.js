@@ -7,7 +7,8 @@ module.exports = {
         "secondary": "#00afef"
       },
       screens: {
-        mmd: "860px",
+        md: "860px",
+        xlg: "1100px",
       },
       keyframes: {
         "slide-down": {

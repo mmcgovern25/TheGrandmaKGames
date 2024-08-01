@@ -32,14 +32,14 @@ const Navbar = ({ theme, setTheme }) => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  const buttonTextClass = theme === 'light' ? 'text-green-700' : 'text-white';
+  /*const buttonTextClass = theme === 'light' ? 'text-green-700' : 'text-white';*/
 
   return (
-    <nav className={`relative z-50 transition duration-700 border-b-2 ${theme === 'light' ? 'bg-white' : 'bg-black'}`}>
-      <div className='flex justify-between items-center p-4'>
+    <nav className={` relative z-50 transition duration-700 border-b-2 ${theme === 'light' ? 'bg-white' : 'bg-black'}`}>
+      <div className=' flex justify-between items-center p-2'>
         <img src={logo} alt="The Grandma Games" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px]" />
 
-        <motion.ul className="hidden md:flex flex-row p-4 space-x-14 mr-16"
+        <motion.ul className=" hidden md:flex flex-row space-x-14 mr-16"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -47,7 +47,7 @@ const Navbar = ({ theme, setTheme }) => {
           {['About', 'Trivia', 'Connect 4', 'Memory Lane', 'Tik Tak Toe'].map((item, index) => (
             <motion.button
               key={index}
-              className={buttonTextClass}
+              className={`nav ${theme === 'light' ? 'hover:text-black' : 'hover:text-white'}` }
               variants={itemVariants}
               transition={{ type: 'spring', stiffness: 150 }}
             >
