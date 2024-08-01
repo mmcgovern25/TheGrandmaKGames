@@ -8,27 +8,22 @@ module.exports = {
       },
       screens: {
         md: "860px",
-        xlg: "1100px",
       },
       keyframes: {
-        "slide-down": {
+        "slide-in-right": {
           "0%": {
             opacity: 0,
-            "-webkit-transform": "translate(-50%, -100%)",
-            transform: "translate(-50%, -100%)",
+            transform: "translate(100%, 0)", // Start off-screen to the right
           },
           "100%": {
             opacity: 1,
-            "-webkit-transform": "translate(-50%, 0)",
-            transform: "translate(-50%, 0)",
+            transform: "translate(-100%, 0)", // End at the original position
           },
         },
       },
       animation: {
-        "slide-down": "slide-down .2s ease-out",
+        "slide-in-right": "slide-in-right 0.2s ease-out",
       },
-
-
     },
   },
   plugins: [

@@ -78,7 +78,7 @@ const Hero = ({ theme }) => {
           backgroundColor: 'black', // Ensure it's above other elements
           overflow: 'hidden' // Hide any overflow
         }}
-        className="mt-6 sm:mt-15 md:mt-[2rem] lg:mt-[1.9rem]  whitespace-nowrap"
+        className="mt-6 sm:mt-[1.5rem] md:mt-[1.6rem] lg:mt-[1.5rem]  whitespace-nowrap"
       >
         <motion.div
           initial='initial'
