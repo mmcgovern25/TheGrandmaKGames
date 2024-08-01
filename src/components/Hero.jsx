@@ -86,7 +86,7 @@ const Hero = ({ theme }) => {
           animate="animate"
           className="flex"
         >
-          <span className={`text-2xl font-bold mr-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+          <span className={`text-2xl font-bold mr-8 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
             Featuring the Big 13: Kara, Bri, Mike, Jess, Brendan, Tommy, Jill, Matt, Sean, Scottie, Colleen, Samantha, and Katie!
           </span>
         </motion.div>

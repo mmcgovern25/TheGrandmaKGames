@@ -35,8 +35,9 @@ const Navbar = ({ theme, setTheme }) => {
   return (
     <nav className={` relative z-50 transition duration-700 border-b-2 ${theme === 'light' ? 'bg-white' : 'bg-black'}`}>
       <div className='flex justify-between items-center p-2'>
+        <Link to="/">
         <img src={logo} alt="The Grandma Games" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px]" />
-
+        </Link>
 
         <motion.ul className="hidden md:flex flex-row space-x-14 mr-16"
           variants={containerVariants}
