@@ -17,7 +17,7 @@ module.exports = {
           },
           "100%": {
             opacity: 1,
-            transform: "translate(-100%, 0)", // End at the original position
+            transform: "translate(0, 0)", // End at the original position
           },
         },
       },

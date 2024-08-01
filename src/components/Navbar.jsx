@@ -82,7 +82,7 @@ const Navbar = ({ theme, setTheme }) => {
             )}
           </div>
           {isMenuToggled && (
-            <div className={`flex flex-col ${theme === 'light' ? 'bg-white' : 'bg-black'} shadow-md absolute top-full left-1/2 transform -translate-x-1/2 animate-slide-in-right rounded`}>
+            <div className={`flex flex-col ${theme === 'light' ? 'bg-white' : 'bg-black'} shadow-md absolute top-full right-0 animate-slide-in-right rounded`}>
               {['Trivia', 'Connect 4', 'Memory Lane', 'Tik Tak Toe'].map((item, index) => (
                 <Link key={index} to={`/${item.replace(/ /g, '').toLowerCase()}`} onClick={() => setIsMenuToggled(false)}>
                   <p
