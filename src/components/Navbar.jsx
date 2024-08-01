@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import { motion } from 'framer-motion';
 import { night, day } from '../assets';
+import MoonSVG from './MoonSVG';
+import SunSVG from './SunSVG';
 import { Link } from 'react-router-dom';
 
 const containerVariants = {
@@ -61,7 +63,11 @@ const Navbar = ({ theme, setTheme }) => {
         </motion.ul>
 
         <img onClick={toggle_mode} src={theme === 'light' ? night : day} alt="Toggle Theme" className="order-2 md:order-1 mr-4 w-[35px] sm:w-[40px] md:w-[45px] cursor-pointer" />
-
+          <input type='checkbox' id="darkmode-toggle"/>
+          <label htmlFor="darkmode-toggle">
+            <MoonSVG className='w-10 h-10'/>
+            <SunSVG className='w-10 h-10'/>
+          </label>
         <div className="relative md:hidden order-1 md:order-2">
           <div
             className={`rounded-full ${theme === 'light' ? 'hover:bg-gray-200' : ''} p-2 cursor-pointer`}
