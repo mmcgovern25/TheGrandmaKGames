@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className={`hero ${theme}`}>
-      <Hero />
+      <Hero theme={theme} />
       <FeaturedGames />
       <About />
     </div>

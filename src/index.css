@@ -4,6 +4,10 @@
 
 /* Default theme (light) */
 
+body {
+  transition: background-color 0.7s ease, color 0.7s ease; /* Add transition for smooth effect */
+}
+
 body.light {
   background-color: #f0f0f0;
   color: #000;
@@ -13,6 +17,7 @@ body.dark {
   background-color: #333;
   color: #fff;
 }
+
 
 main {
   margin: 2rem auto;
@@ -35,7 +40,7 @@ main {
   }
 
   .nav:hover::after {
-    @apply w-[100px]
+    @apply w-full
   }
 
 }
@@ -43,7 +48,7 @@ main {
 
 .stroke {
   stroke: #1bac08;
-  stroke-width: 5;
+  stroke-width: 12;
   stroke-linejoin: round;
   stroke-linecap: round;
 }

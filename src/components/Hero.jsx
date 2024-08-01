@@ -31,7 +31,7 @@ const scrollVariants = {
   }
 };
 
-const Hero = () => {
+const Hero = ({ theme }) => {
   return (
     <div className='mb-12'>
       <div className='mt-20 flex flex-col justify-center items-center px-4'>
@@ -39,7 +39,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className='bruno-ace-sc-regular text-black text-1xl sm:text-2xl md:text-3xl lg:text-4xl sm:mb-2 md:mb-4'
+          className={`bruno-ace-sc-regular text-1xl sm:text-2xl md:text-3xl lg:text-4xl sm:mb-2 md:mb-4 ${theme === 'dark' ? 'text-white' : 'text-black'}`}
         >
           Welcome to
         </motion.div>
@@ -49,7 +49,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className='bruno-ace-sc-regular text-center text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-2'
+            className={`bruno-ace-sc-regular text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-2 ${theme === 'dark' ? 'text-white' : 'text-black'}`}
           >
             The Grandma K Games
           </motion.h1>
@@ -72,12 +72,10 @@ const Hero = () => {
           position: 'absolute', // Absolute positioning to ensure it floats above other content
           top: '0',
           left: '0',
-
           transform: 'rotate(90deg)', // Rotate the container
           transformOrigin: 'left bottom', // Set the rotation origin
           zIndex: 3000,
           backgroundColor: 'black', // Ensure it's above other elements
-    // Adjust height to cover the entire viewport height
           overflow: 'hidden' // Hide any overflow
         }}
         className="mt-6 sm:mt-15 md:mt-[2rem] lg:mt-[1.9rem]  whitespace-nowrap"
@@ -88,10 +86,9 @@ const Hero = () => {
           animate="animate"
           className="flex"
         >
-          <span className="text-2xl font-bold text-gray-400 mr-8">
+          <span className={`text-2xl font-bold mr-8 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
             Featuring the Big 13: Kara, Bri, Mike, Jess, Brendan, Tommy, Jill, Matt, Sean, Scottie, Colleen, Samantha, and Katie!
           </span>
-
         </motion.div>
       </div>
     </div>

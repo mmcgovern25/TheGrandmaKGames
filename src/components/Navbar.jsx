@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../assets/slicedUp.gif';
+import logo from '../assets/logo.png';
 import { motion } from 'framer-motion';
 import { night, day } from '../assets';
 import { Link } from 'react-router-dom';
@@ -36,6 +36,7 @@ const Navbar = ({ theme, setTheme }) => {
     <nav className={` relative z-50 transition duration-700 border-b-2 ${theme === 'light' ? 'bg-white' : 'bg-black'}`}>
       <div className='flex justify-between items-center p-2'>
         <img src={logo} alt="The Grandma Games" className="mr-4 w-[50px] sm:w-[50px] md:w-[50px]" />
+
 
         <motion.ul className="hidden md:flex flex-row space-x-14 mr-16"
           variants={containerVariants}
