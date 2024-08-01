@@ -4,7 +4,6 @@ import {
   trivia,
   connect4,
   tiktaktoe,
-  test,
 
 } from "../assets"
 
