@@ -2,12 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 
 const Player = ({name, symbol}) => {
+  const [ isEditing, setIsEditing ] = useState(false);
+
+  function handleEditClick() {
+    setIsEditing(!isEditing);
+  }
+
   return (
     <li>
             <span>
-              <span className='player-name'>{name}</span>
+              {isEditing ? <input type='text' required value={name}/> : <input type='text' required value={name}/> }
               <span className='player-symbol'>{symbol}</span>
-              <button>Edit</button>
+              <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
             </span>
           </li>
   )
