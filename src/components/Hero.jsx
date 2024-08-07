@@ -39,7 +39,7 @@ const Hero = ({ theme }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className={`bruno-ace-sc-regular text-1xl sm:text-2xl md:text-3xl lg:text-4xl sm:mb-2 md:mb-4 ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+          className={`bruno-ace-sc-regular text-1xl sm:text-2xl md:text-3xl lg:text-4xl sm:mb-2 md:mb-4 `}
         >
           Welcome to
         </motion.div>
@@ -49,7 +49,7 @@ const Hero = ({ theme }) => {
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className={`bruno-ace-sc-regular text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-2 ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+            className={`bruno-ace-sc-regular text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-2`}
           >
             The Grandma K Games
           </motion.h1>
