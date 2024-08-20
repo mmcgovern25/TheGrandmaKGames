@@ -3,7 +3,7 @@
   margin: 3rem auto;
   padding: 2rem;
   border-radius: 6px;
-  background: linear-gradient(#383624, #282617);
+  background: linear-gradient(#4CAF50, #2E7D32); /* Green gradient */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   position: relative;
 }
@@ -32,14 +32,14 @@
 
 #players.highlight-player li.active .player-name,
 #players.highlight-player li.active .player-symbol {
-  color: #f6e35a;
+  color: #1bac08;
 }
 
 #players button {
   width: 3rem;
   border: none;
   background: none;
-  color: #c3ba78;
+  color: white;
   font-size: 0.9rem;
   cursor: pointer;
   transition: color 0.2s;
@@ -48,7 +48,7 @@
 }
 
 #players button:hover {
-  color: #f8ca31;
+  color: #D3D3D3;
 }
 
 .player {
@@ -102,7 +102,7 @@ ol {
 #pre-game button {
   cursor: pointer;
   background: none;
-  color: #f8c031;
+  color: #1bac08;
   border: none;
   font-family: 'Caprasimo', cursive;
   font-size: 4rem;
