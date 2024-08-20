@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Player = ({name, symbol}) => {
+export default function Player({name, symbol}) {
   const [ isEditing, setIsEditing ] = useState(false);
 
   function handleEditClick() {
@@ -10,13 +10,11 @@ const Player = ({name, symbol}) => {
 
   return (
     <li>
-            <span>
-              {isEditing ? <input type='text' required value={name}/> : <input type='text' required value={name}/> }
-              <span className='player-symbol'>{symbol}</span>
-              <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
-            </span>
-          </li>
+        <span>
+          {isEditing ? <input type='text' required value={name}/> : <input type='text' required value={name}/> }
+          <span className='player-symbol'>{symbol}</span>
+          <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
+        </span>
+      </li>
   )
 }
-
-export default Player
