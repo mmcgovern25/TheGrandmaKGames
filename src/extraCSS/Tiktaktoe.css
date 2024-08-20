@@ -152,6 +152,15 @@ ol {
   padding: 1rem;
 }
 
+/* Media query for small mobile screens */
+@media (max-width: 600px) {
+  #game-board button {
+    width: 6rem;
+    height: 6rem;
+    font-size: 4rem; /* Adjust the font size proportionally */
+  }
+}
+
 #game-over {
   position: absolute;
   top: 0;

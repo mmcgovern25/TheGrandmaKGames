@@ -2,6 +2,7 @@ import React from 'react';
 import Player from '../TTTcomponents/Player';
 import '../extraCSS/Tiktaktoe.css'
 import { blueo, redx } from '../assets';
+import GameBoard from '../TTTcomponents/Gameboard';
 
 function TikTakToe() {
   return (
@@ -15,7 +16,7 @@ function TikTakToe() {
           <Player className="player-name" initialName="Player 1" symbol={redx} />
           <Player className="player-name" initialName="Player 2" symbol={blueo} />
         </ol>
-        GAME BOARD
+          <GameBoard />
       </div>
       LOG
   </main>
