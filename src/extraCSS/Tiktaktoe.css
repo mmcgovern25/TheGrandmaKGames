@@ -26,13 +26,13 @@
 }
 
 #players.highlight-player li.active {
-  border-color: #f6e35a;
+  border-color: #4CAF50;
   animation: pulse 2s infinite ease-in-out;
 }
 
 #players.highlight-player li.active .player-name,
 #players.highlight-player li.active .player-symbol {
-  color: #1bac08;
+  color: white;
 }
 
 #players button {
@@ -52,6 +52,9 @@
 }
 
 .player {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Distribute space between items */
   border: 2px solid transparent;
   padding: 0.5rem;
   border-radius: 4px;
@@ -59,16 +62,17 @@
 }
 
 .player-name {
-  display: inline-block;
-  width: 10rem;
+  display: flex;
+  align-items: center; /* Center align text vertically */
   font-size: 1rem;
-  color: #e1dec7;
+  color: white;
   text-transform: uppercase;
   margin: 0;
   padding: 0.5rem;
   border-radius: 4px;
   text-overflow: ellipsis;
   text-align: center;
+  flex-grow: 1; /* Allow the name to take up available space */
 }
 
 .player input {
@@ -78,15 +82,22 @@
   border: none;
   padding: 0.5rem;
   animation: pulse-text 2s infinite;
-  background-color: #46432f;
+  background-color: white;
   text-align: center;
   text-transform: uppercase;
 }
 
+
 .player-symbol {
-  margin-left: 1rem;
-  font-size: 1rem;
-  color: #e1dec7;
+  display: flex;
+  align-items: center; /* Center align the image vertically */
+  margin-left: 1rem; /* Add spacing between name and symbol */
+}
+
+.player-symbol-img {
+  width: 2rem; /* Adjust size as needed */
+  height: 2rem; /* Adjust size as needed */
+  object-fit: contain; /* Ensure the image scales nicely */
 }
 
 ol {
@@ -247,15 +258,18 @@ ol {
   }
 }
 
+
+
+
 @keyframes pulse-text {
   0% {
-    color: #e1dec7;
+    color: #a8d5ba; /* Light green */
   }
   50% {
-    color: #9f9d83;
+    color: #4CAF50; /* Medium green */
   }
   100% {
-    color: #e1dec7;
+    color: #a8d5ba; /* Light green */
   }
 }
 
