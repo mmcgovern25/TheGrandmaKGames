@@ -1,10 +1,18 @@
-import React from 'react';
+import { useState } from 'react';
 import Player from '../TTTcomponents/Player';
 import '../extraCSS/Tiktaktoe.css'
 import { blueo, redx } from '../assets';
 import GameBoard from '../TTTcomponents/Gameboard';
 
 function TikTakToe() {
+
+  const [activePlayer, setActivePlayer] = useState('X');
+
+  function handleSelectSquare() {
+    setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? 'O' : 'X');
+  }
+
+
   return (
     <main>
       <div className='mt-20 flex flex-col justify-center items-center px-4'>
@@ -12,11 +20,11 @@ function TikTakToe() {
       </div>
 
       <div id="game-container">
-        <ol id="players">
-          <Player className="player-name" initialName="Player 1" symbol={redx} />
-          <Player className="player-name" initialName="Player 2" symbol={blueo} />
+        <ol id="players" className="highlight-player">
+          <Player className="player-name" initialName="Player 1" symbol={redx} isActive={activePlayer === 'X'} />
+          <Player className="player-name" initialName="Player 2" symbol={blueo} isActive={activePlayer === 'O'} />
         </ol>
-          <GameBoard />
+          <GameBoard onSelectSquare={handleSelectSquare} activePlayerSymbol={activePlayer} />
       </div>
       LOG
   </main>
