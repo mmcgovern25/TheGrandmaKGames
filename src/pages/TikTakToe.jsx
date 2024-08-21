@@ -4,6 +4,7 @@ import '../extraCSS/Tiktaktoe.css'
 import { blueo, redx } from '../assets';
 import GameBoard from '../TTTcomponents/Gameboard';
 import Log from '../TTTcomponents/Log';
+import { WINNING_COMBINATIONS } from '../TTTcomponents/winning-combinations';
 
 
 function deriveActivePlayer(gameTurns) {
@@ -16,10 +17,34 @@ function deriveActivePlayer(gameTurns) {
   return currentPlayer
 }
 
+const initialGameBoard = [
+  [null, null, null],  // Added a comma here
+  [null, null, null],  // Added a comma here
+  [null, null, null]
+];
+
+
 function TikTakToe() {
   const [gameTurns, setGameTurns] = useState([]);
 
+
+
   const activePlayer = deriveActivePlayer(gameTurns)
+
+  let gameBoard = initialGameBoard;
+
+  for (const turn  of gameTurns) {
+    const { square, player } = turn;
+    const { row, col } = square;
+
+    gameBoard[row][col] = player
+  }
+
+  for (const combinations of WINNING_COMBINATIONS) {
+    const firstSquareSymbol = gameBoard[]
+    const secondSquareSymbol
+    const thirdSquareSymbol
+  }
 
   function handleSelectSquare(rowIndex, colIndex) {
 
@@ -45,7 +70,7 @@ function TikTakToe() {
           <Player className="player-name" initialName="Player 1" symbol={redx} isActive={activePlayer === 'X'} />
           <Player className="player-name" initialName="Player 2" symbol={blueo} isActive={activePlayer === 'O'} />
         </ol>
-          <GameBoard onSelectSquare={handleSelectSquare} turns={gameTurns} />
+          <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
       </div>
       <Log turns={gameTurns}/>
   </main>
