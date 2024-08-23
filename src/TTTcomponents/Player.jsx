@@ -34,7 +34,7 @@ export default function Player({ initialName, symbol, isActive, onChangeName }) 
           )}
         </span>
         <span className="flex items-center ml-4">
-          <img src={symbol} alt="Player Symbol" className="w-8 h-8 object-contain" />
+          <img src={symbol} alt="Player Symbol" className="w-4 sm:w-8 h-4 sm:h-8 mt-1 object-contain" />
         </span>
         <button onClick={handleEditClick} className="w-12 text-white text-sm bg-transparent p-2 cursor-pointer hover:text-[#D3D3D3] transition-colors duration-200">
           {isEditing ? 'Save' : 'Edit'}

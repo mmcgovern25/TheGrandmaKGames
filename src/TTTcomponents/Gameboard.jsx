@@ -1,3 +1,14 @@
+import React from 'react';
+
+// Import your images
+import { blueo, redx } from '../assets'; // Adjust the path as needed
+ // Adjust the path as needed
+
+const SYMBOL_IMAGES = {
+  'X': redx,
+  'O': blueo
+};
+
 export default function GameBoard({ onSelectSquare, board }) {
   return (
     <ol className="flex flex-col justify-center gap-8">
@@ -9,9 +20,16 @@ export default function GameBoard({ onSelectSquare, board }) {
                 <button
                   onClick={() => onSelectSquare(rowIndex, colIndex)}
                   disabled={playerSymbol !== null}
-                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-36 lg:h-36 rounded-lg bg-[#aca788] text-[#3f3b00] text-[70px] sm:text-[70px] md:text-[90px] lg:text-[100px] flex items-center justify-center cursor-pointer p-4"
+                  className="w-[90px] h-[90px] sm:w-[100px] sm:h-[100px] md:w-[100px] md:h-[100px] lg:w-[100px] lg:h-[100px] rounded-lg bg-[#aca788]
+                  text-[#3f3b00] flex items-center justify-center cursor-pointer p-4"
                 >
-                  {playerSymbol}
+                  {playerSymbol ? (
+                    <img
+                      src={SYMBOL_IMAGES[playerSymbol]} // Use the image corresponding to the symbol
+                      alt={playerSymbol}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : null}
                 </button>
               </li>
             ))}
