@@ -81,11 +81,11 @@ function TikTakToe() {
   }
 
   return (
-    <main className="mt-10 flex flex-col justify-center items-center px-4">
+    <main className="flex flex-col justify-center items-center px-4">
       <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-8 bruno-ace-sc-regular">Tik Tak Toe</div>
 
       <div
-        className="max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl w-full bg-gradient-to-b from-green-500 to-green-700 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-xl flex flex-col items-center"
+        className="max-w-[500px] sm:max-w-[550px] md:max-w-[600px] lg:max-w-[650px] w-full bg-gradient-to-b from-green-500 to-green-700 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-xl flex flex-col items-center"
       >
         <ol id="players" className="highlight-player flex justify-center items-center gap-4 mb-6">
           <Player

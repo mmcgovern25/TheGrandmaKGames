@@ -18,8 +18,8 @@ export default function Player({ initialName, symbol, isActive, onChangeName }) 
 
   return (
     <li className={`${isActive ? 'border-[#4CAF50] animate-pulse' : 'border-transparent'} flex items-center w-1/2 border-3 rounded-md`}>
-      <span className="flex items-center justify-between border-2 border-transparent p-2 rounded-md font-bold">
-        <span className="flex items-center text-xl text-white uppercase mx-0 p-2 rounded-md text-center flex-grow">
+      <span className="flex items-center justify-between border-2 border-transparent lg:p-2 rounded-md font-bold">
+        <span className="flex items-center text-[10px text-white uppercase mx-0 p-2 rounded-md text-center flex-grow">
           {isEditing ? (
             <input
               type="text"
@@ -27,7 +27,7 @@ export default function Player({ initialName, symbol, isActive, onChangeName }) 
               value={playerName}
               onChange={handleChange}
               style={{ display: 'block', visibility: 'visible', color: '#4CAF50', backgroundColor: 'white' }}
-              className="font-inherit text-lg w-40 border-none p-2 bg-white text-black text-center uppercase"
+              className="font-inherit text-[10px] w-20 border-none p-2 bg-white text-center uppercase"
             />
           ) : (
             <span className="player-name">{playerName}</span>

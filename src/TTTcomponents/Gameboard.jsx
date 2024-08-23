@@ -9,7 +9,7 @@ export default function GameBoard({ onSelectSquare, board }) {
                 <button
                   onClick={() => onSelectSquare(rowIndex, colIndex)}
                   disabled={playerSymbol !== null}
-                  className="w-64 h-64 sm:w-32 sm:h-32 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-lg bg-[#aca788] text-[#3f3b00] text-5xl flex items-center justify-center cursor-pointer p-4"
+                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-36 lg:h-36 rounded-lg bg-[#aca788] text-[#3f3b00] text-[70px] sm:text-[70px] md:text-[90px] lg:text-[100px] flex items-center justify-center cursor-pointer p-4"
                 >
                   {playerSymbol}
                 </button>
