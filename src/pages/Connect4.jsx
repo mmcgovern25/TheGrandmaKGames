@@ -102,7 +102,7 @@ function TikTakToe() {
           <Player className="player-name" initialName="Player 2" symbol={blueo} isActive={activePlayer === 'O'} onChangeName={handlePlayerNameChange} />
         </ol>
         {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
-          <c4Gameboard onSelectSquare={handleSelectSquare} board={gameBoard} />
+        <c4Gameboard />
       </div>
       <Log turns={gameTurns}/>
   </main>
