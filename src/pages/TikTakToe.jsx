@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Player from '../TTTcomponents/Player';
 import GameBoard from '../TTTcomponents/Gameboard';
 import Log from '../TTTcomponents/Log';
-import GameOver from '../TTTcomponents/GameOver.jsx';
+import GameOver from '../TTTcomponents/GameOver';
 import { WINNING_COMBINATIONS } from '../TTTcomponents/winning-combinations';
-import { useState } from 'react';
 import { blueo, redx } from '../assets';
 
 function deriveActivePlayer(gameTurns) {
@@ -85,7 +84,7 @@ function TikTakToe() {
       <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-3xl mb-8 lg:mb-4 bruno-ace-sc-regular">Tik Tak Toe</div>
 
       <div
-        className="pb-12 max-w-[550px] sm:max-w-[550px] md:max-w-[600px] lg:max-w-[600px] w-full bg-gradient-to-b from-green-500 to-green-700 lg:pt-[15px] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-xl flex flex-col items-center"
+        className="relative pb-12 max-w-[550px] sm:max-w-[550px] md:max-w-[600px] lg:max-w-[600px] w-full bg-gradient-to-b from-green-500 to-green-700 lg:pt-[15px] p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-xl flex flex-col items-center"
       >
         <ol id="players" className="highlight-player flex justify-center items-center gap-4 mb-6">
           <Player
@@ -103,8 +102,9 @@ function TikTakToe() {
             onChangeName={handlePlayerNameChange}
           />
         </ol>
-        {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
+
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
+        {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
       </div>
       <Log turns={gameTurns} />
     </main>
