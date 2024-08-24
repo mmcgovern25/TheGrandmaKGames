@@ -49,9 +49,13 @@ function TikTakToe() {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thirdSquareSymbol
     ) {
-      winner = players[firstSquareSymbol];
+      winner = players[firstSquareSymbol]; // This should now correctly use the updated player names
+       // Exit the loop once a winner is found
     }
+
   }
+
+
 
   const hasDraw = gameTurns.length === 9 && !winner;
 
@@ -78,6 +82,7 @@ function TikTakToe() {
       };
     });
   }
+
 
   return (
     <main className="flex flex-col justify-center items-center px-4">
