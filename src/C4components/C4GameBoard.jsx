@@ -1,12 +1,11 @@
 import React from 'react';
 
 // Import your images
-import { blueo, redx } from '../assets'; // Adjust the path as needed
- // Adjust the path as needed
+import { rchip, ychip } from '../assets'; // Adjust the path as needed
 
 const SYMBOL_IMAGES = {
-  'X': redx,
-  'O': blueo
+  'X': rchip,
+  'O': ychip
 };
 
 export default function c4Gameboard({ onSelectSquare, board }) {
@@ -21,7 +20,7 @@ export default function c4Gameboard({ onSelectSquare, board }) {
                   onClick={() => onSelectSquare(rowIndex, colIndex)}
                   disabled={playerSymbol !== null}
                   className="w-[40px] h-[40px] sm:w-[42px] sm:h-[42px] md:w-[50px] md:h-[50px] lg:w-[50px] lg:h-[50px] bg-[#aca788]
-                  text-[#3f3b00] flex items-center justify-center cursor-pointer p-4 rounded-full"
+                  text-[#3f3b00] flex items-center justify-center cursor-pointer rounded-full p-0"
                 >
                   {playerSymbol ? (
                     <img

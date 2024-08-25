@@ -4,6 +4,9 @@ import tiktaktoe from "./tiktaktoe.png";
 import trivia from "./trivia.jpg";
 import blueo from './blueoo.png';
 import redx from './red-x.png';
+import rchip from './rchip.png';
+import ychip from './ychip.png';
+
 
 
 export {
@@ -12,5 +15,7 @@ export {
   tiktaktoe,
   trivia,
   blueo,
-  redx
+  redx,
+  rchip,
+  ychip
 };
