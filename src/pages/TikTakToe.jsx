@@ -3,7 +3,7 @@ import Player from '../TTTcomponents/Player';
 import GameBoard from '../TTTcomponents/Gameboard';
 import Log from '../TTTcomponents/Log';
 import GameOver from '../TTTcomponents/GameOver';
-import { WINNING_COMBINATIONS } from '../TTTcomponents/winning-combinations';
+import { TTT_WINNING_COMBINATIONS } from '../TTTcomponents/TTT_winning-combinations';
 import { blueo, redx } from '../assets';
 
 function deriveActivePlayer(gameTurns) {
@@ -39,7 +39,7 @@ function TikTakToe() {
 
   let winner = null;
 
-  for (const combination of WINNING_COMBINATIONS) {
+  for (const combination of TTT_WINNING_COMBINATIONS) {
     const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
     const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
     const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];

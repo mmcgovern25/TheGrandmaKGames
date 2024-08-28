@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Player from '../TTTcomponents/Player';
 import Log from '../TTTcomponents/Log';
 import GameOver from '../TTTcomponents/GameOver';
-import { WINNING_COMBINATIONS } from '../TTTcomponents/winning-combinations';
+import { C4_WINNING_COMBINATIONS } from '../C4components/C4_winning_combinations';
 import { blueo, redx } from '../assets';
 import C4Gameboard from '../C4components/C4GameBoard';
 
@@ -23,7 +23,7 @@ const initialGameBoard = [
    [null, null, null, null, null, null, null],
 ];
 
-function TikTakToe() {
+function Connect4() {
   const [players, setPlayers] = useState({
     'X': 'Player 1',
     'O': 'Player 2',
@@ -42,25 +42,26 @@ function TikTakToe() {
 
   let winner = null;
 
-  for (const combination of WINNING_COMBINATIONS) {
-    const firstSquareSymbol = gameBoard[combination[0].row][combination[0].column];
-    const secondSquareSymbol = gameBoard[combination[1].row][combination[1].column];
-    const thirdSquareSymbol = gameBoard[combination[2].row][combination[2].column];
+ for (const combination of C4_WINNING_COMBINATIONS) {
+  const firstSquareSymbol = gameBoard[combination[0].row]?.[combination[0].column];
+  const secondSquareSymbol = gameBoard[combination[1].row]?.[combination[1].column];
+  const thirdSquareSymbol = gameBoard[combination[2].row]?.[combination[2].column];
+  const fourthSquareSymbol = gameBoard[combination[3].row]?.[combination[3].column];
 
-    if (
-      firstSquareSymbol &&
-      firstSquareSymbol === secondSquareSymbol &&
-      firstSquareSymbol === thirdSquareSymbol
-    ) {
-      winner = players[firstSquareSymbol]; // This should now correctly use the updated player names
-       // Exit the loop once a winner is found
-    }
-
+  if (
+    firstSquareSymbol &&
+    firstSquareSymbol === secondSquareSymbol &&
+    firstSquareSymbol === thirdSquareSymbol &&
+    firstSquareSymbol === fourthSquareSymbol
+  ) {
+    winner = players[firstSquareSymbol];
+    break; // Exit loop once a winner is found
   }
+}
 
 
 
-  const hasDraw = gameTurns.length === 9 && !winner;
+  const hasDraw = gameTurns.length === 42 && !winner;
 
   function handleSelectSquare(rowIndex, colIndex) {
     setGameTurns(prevTurns => {
@@ -119,4 +120,4 @@ function TikTakToe() {
   );
 }
 
-export default TikTakToe;
+export default Connect4;
