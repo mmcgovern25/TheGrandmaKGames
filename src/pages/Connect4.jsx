@@ -20,7 +20,7 @@ const initialGameBoard = [
   [null, null, null, null, null, null, null],
   [null, null, null, null, null, null, null],
   [null, null, null, null, null, null, null],
-   [null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null],
 ];
 
 function Connect4() {
@@ -42,7 +42,7 @@ function Connect4() {
 
   let winner = null;
 
- for (const combination of C4_WINNING_COMBINATIONS) {
+for (const combination of C4_WINNING_COMBINATIONS) {
   const firstSquareSymbol = gameBoard[combination[0].row]?.[combination[0].column];
   const secondSquareSymbol = gameBoard[combination[1].row]?.[combination[1].column];
   const thirdSquareSymbol = gameBoard[combination[2].row]?.[combination[2].column];
@@ -63,16 +63,29 @@ function Connect4() {
 
   const hasDraw = gameTurns.length === 42 && !winner;
 
-  function handleSelectSquare(rowIndex, colIndex) {
-    setGameTurns(prevTurns => {
-      const currentPlayer = deriveActivePlayer(prevTurns);
-      const updatedTurns = [
-        { square: { row: rowIndex, col: colIndex }, player: currentPlayer },
-        ...prevTurns,
-      ];
-      return updatedTurns;
-    });
+  function handleSelectSquare(colIndex) {
+    // Find the lowest available row in the selected column
+    let availableRow = null;
+    for (let row = gameBoard.length - 1; row >= 0; row--) {
+      if (gameBoard[row][colIndex] === null) {
+        availableRow = row;
+        break;
+      }
+    }
+
+    // If there is an available row, make the move
+    if (availableRow !== null) {
+      setGameTurns(prevTurns => {
+        const currentPlayer = deriveActivePlayer(prevTurns);
+        const updatedTurns = [
+          { square: { row: availableRow, col: colIndex }, player: currentPlayer },
+          ...prevTurns,
+        ];
+        return updatedTurns;
+      });
+    }
   }
+
 
   function handleRestart() {
     setGameTurns([]);
