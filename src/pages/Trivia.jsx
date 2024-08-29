@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { mil } from '../assets';
+import Quiz from '../triviacomponents/Quiz';
 
 const Trivia = () => {
   const [activeIndex, setActiveIndex] = useState(14); // Change the index to match the active `li`
@@ -26,15 +27,14 @@ const Trivia = () => {
 
   return (
     <div className="h-screen flex">
-      <div className="w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
-        <div className='h-[50%]'>
-<div className='w-[70px] h-[70px] rounded-full border-2 border-white border-solid flex items-center justify-center text-white'>
-  30
-</div>
-
+      <div className=" w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
+        <div className='relative h-[50%]'>
+        <div className='bottom-[10px] left-[80px] absolute w-[70px] h-[70px] text-[30px] font-bold rounded-full border-2 border-white border-solid flex items-center justify-center text-white'>
+          30
+        </div>
 
         </div>
-        <div className='h-[50%]'>question and answers</div>
+        <div className='h-[50%]'><Quiz /></div>
       </div>
       <div className="w-[25%] flex items-center text-center justify-center">
         <ul className='w-[100%] p-[20px]'>
