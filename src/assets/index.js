@@ -6,6 +6,7 @@ import blueo from './blueoo.png';
 import redx from './red-x.png';
 import rchip from './rchip.png';
 import ychip from './ychip.png';
+import mil from './milbg4.jpg';
 
 
 
@@ -17,5 +18,6 @@ export {
   blueo,
   redx,
   rchip,
-  ychip
+  ychip,
+  mil
 };
