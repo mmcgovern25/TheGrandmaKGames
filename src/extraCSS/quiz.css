@@ -7,3 +7,43 @@
 .gradient-bg:hover {
   background: linear-gradient(to bottom, #a5d6a7, #81c784); /* Custom hover gradient */
 }
+
+.correct {
+  animation: correct 3s ease forwards;
+}
+
+@keyframes correct {
+  0%,
+  10%,
+  40% {
+    background: linear-gradient(to bottom, #a5d6a7, #81c784);
+  }
+  25%,
+  45%,
+  60% {
+    background: linear-gradient(to bottom, #22c55e, #15803d);
+  }
+  62%, 100% {
+    background: green
+  }
+}
+
+.wrong {
+  animation: wrong 3s ease forwards;
+}
+
+@keyframes wrong {
+  0%,
+  10%,
+  40% {
+    background: linear-gradient(to bottom, #a5d6a7, #81c784);
+  }
+  25%,
+  45%,
+  60% {
+    background: linear-gradient(to bottom, #22c55e, #15803d);
+  }
+  62%, 100% {
+    background: crimson;
+  }
+}

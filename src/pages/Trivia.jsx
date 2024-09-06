@@ -3,7 +3,9 @@ import { mil } from '../assets';
 import Quiz from '../triviacomponents/Quiz';
 
 const Trivia = () => {
-  const [activeIndex, setActiveIndex] = useState(14); // Change the index to match the active `li`
+  const [activeIndex, setActiveIndex] = useState(14);
+  const [questionNumber, setQuestionNumber] = useState(1)
+  const [timeOut, setTimeOut] = useState(false) // Change the index to match the active `li`
 
   const items = [
     { id: 1, amount: '$ 100' },
@@ -23,6 +25,31 @@ const Trivia = () => {
     { id: 15, amount: '$ 1,000,000' },
   ].reverse();
 
+  const data = [
+    {
+      id: 1,
+      question: "What year did grandma graduate high school?",
+      answers: [
+        {
+          text: "1940",
+          correct: false,
+        },
+        {
+          text: "1930",
+          correct: false,
+        },
+        {
+          text: "1955",
+          correct: false,
+        },
+        {
+          text: "1958",
+          correct: true,
+        }
+      ]
+    }
+  ]
+
 
 
   return (
@@ -34,7 +61,7 @@ const Trivia = () => {
         </div>
 
         </div>
-        <div className='h-[50%]'><Quiz /></div>
+        <div className='h-[50%]'><Quiz data={data} questionNumber={questionNumber} setTimeout={setTimeout} setQuestionNumber={setQuestionNumber}/></div>
       </div>
       <div className="w-[25%] flex items-center text-center justify-center">
         <ul className='w-[100%] p-[20px]'>
