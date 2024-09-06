@@ -1,0 +1,9 @@
+/* styles.css */
+.gradient-bg {
+  background: linear-gradient(to bottom, #22c55e, #15803d); /* Tailwind gradient colors */
+  transition: background 0.3s ease; /* Smooth transition */
+}
+
+.gradient-bg:hover {
+  background: linear-gradient(to bottom, #a5d6a7, #81c784); /* Custom hover gradient */
+}
