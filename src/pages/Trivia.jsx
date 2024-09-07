@@ -4,9 +4,11 @@ import Quiz from '../triviacomponents/Quiz';
 
 const Trivia = () => {
   const [activeIndex, setActiveIndex] = useState(14);
-  const [questionNumber, setQuestionNumber] = useState(1)
-  const [timeOut, setTimeOut] = useState(false) // Change the index to match the active `li`
+  const [questionNumber, setQuestionNumber] = useState(1);
+  const [timeOut, setTimeOut] = useState(false);
+  const [earned, setEarned] = useState("$0");
 
+  // List of question values
   const items = [
     { id: 1, amount: '$ 100' },
     { id: 2, amount: '$ 200' },
@@ -25,43 +27,63 @@ const Trivia = () => {
     { id: 15, amount: '$ 1,000,000' },
   ].reverse();
 
+  // List of questions
   const data = [
     {
       id: 1,
       question: "What year did grandma graduate high school?",
       answers: [
-        {
-          text: "1940",
-          correct: false,
-        },
-        {
-          text: "1930",
-          correct: false,
-        },
-        {
-          text: "1955",
-          correct: false,
-        },
-        {
-          text: "1958",
-          correct: true,
-        }
+        { text: "1940", correct: false },
+        { text: "1930", correct: false },
+        { text: "1955", correct: false },
+        { text: "1958", correct: true }
+      ]
+    },
+    {
+      id: 2,
+      question: "Where did grandpa and grandma first meet?",
+      answers: [
+        { text: "The Park", correct: false },
+        { text: "School", correct: false },
+        { text: "The Bar", correct: true },
+        { text: "Baseball Game", correct: false }
       ]
     }
-  ]
+  ];
 
-
+  // Callback for handling the end of a quiz
+  const handleEnd = (isCorrect, amount) => {
+    if (isCorrect) {
+      setEarned(amount);
+    } else {
+      setEarned("$0");
+    }
+    setTimeOut(true);
+  };
 
   return (
     <div className="h-screen flex">
-      <div className=" w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
-        <div className='relative h-[50%]'>
-        <div className='bottom-[10px] left-[80px] absolute w-[70px] h-[70px] text-[30px] font-bold rounded-full border-2 border-white border-solid flex items-center justify-center text-white'>
-          30
-        </div>
-
-        </div>
-        <div className='h-[50%]'><Quiz data={data} questionNumber={questionNumber} setTimeout={setTimeout} setQuestionNumber={setQuestionNumber}/></div>
+      <div className="w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
+        {timeOut ? (
+          <h1 className="text-3xl font-bold text-white bg-opacity-70 p-4 rounded-lg">You earned: {earned}</h1>
+        ) : (
+          <>
+            <div className='relative h-[50%]'>
+              <div className='bottom-[10px] left-[80px] absolute w-[70px] h-[70px] text-[30px] font-bold rounded-full border-2 border-white border-solid flex items-center justify-center text-white'>
+                30
+              </div>
+            </div>
+            <div className='h-[50%]'>
+              <Quiz
+                data={data}
+                questionNumber={questionNumber}
+                setTimeOut={setTimeOut} // Fixed prop name
+                setQuestionNumber={setQuestionNumber}
+                onEnd={handleEnd} // Pass callback function to Quiz
+              />
+            </div>
+          </>
+        )}
       </div>
       <div className="w-[25%] flex items-center text-center justify-center">
         <ul className='w-[100%] p-[20px]'>
@@ -78,6 +100,6 @@ const Trivia = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Trivia;
