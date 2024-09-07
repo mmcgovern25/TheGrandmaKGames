@@ -5,7 +5,7 @@ import Quiz from '../triviacomponents/Quiz';
 const Trivia = () => {
   const [activeIndex, setActiveIndex] = useState(14);
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [timeOut, setTimeOut] = useState(false);
+  const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$0");
 
   // List of question values
@@ -58,47 +58,51 @@ const Trivia = () => {
     } else {
       setEarned("$0");
     }
-    setTimeOut(true);
+    setStop(true);
   };
 
   return (
     <div className="h-screen flex">
-      <div className="w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
-        {timeOut ? (
-          <h1 className="text-3xl font-bold text-white bg-opacity-70 p-4 rounded-lg">You earned: {earned}</h1>
-        ) : (
-          <>
-            <div className='relative h-[50%]'>
-              <div className='bottom-[10px] left-[80px] absolute w-[70px] h-[70px] text-[30px] font-bold rounded-full border-2 border-white border-solid flex items-center justify-center text-white'>
-                30
-              </div>
+    <div className="w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
+      {stop ? (
+        <div className="relative flex items-center justify-center h-full">
+          <h1 className="text-center text-3xl font-bold text-white bg-black bg-opacity-70 p-4 rounded-lg">
+            Still not a Champeen. You earned: {earned}
+          </h1>
+        </div>
+      ) : (
+        <>
+          <div className='relative h-[50%]'>
+            <div className='bottom-[10px] left-[80px] absolute w-[70px] h-[70px] text-[30px] font-bold rounded-full border-2 border-white border-solid flex items-center justify-center text-white'>
+              30
             </div>
-            <div className='h-[50%]'>
-              <Quiz
-                data={data}
-                questionNumber={questionNumber}
-                setTimeOut={setTimeOut} // Fixed prop name
-                setQuestionNumber={setQuestionNumber}
-                onEnd={handleEnd} // Pass callback function to Quiz
-              />
-            </div>
-          </>
-        )}
-      </div>
-      <div className="w-[25%] flex items-center text-center justify-center">
-        <ul className='w-[100%] p-[20px]'>
-          {items.map((item, index) => (
-            <li
-              key={item.id}
-              className={`flex items-center p-[5px] rounded-md ${activeIndex === index ? 'bg-gradient-to-b from-green-500 to-green-700 text-white' : ''}`}
-            >
-              <span className='text-[18px] font-thin w-[30%]'>{item.id}</span>
-              <span className='ml-2 text-[20px] font-light'>{item.amount}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+          </div>
+          <div className='h-[50%]'>
+            <Quiz
+              data={data}
+              questionNumber={questionNumber}
+              setStop={setStop}
+              setQuestionNumber={setQuestionNumber}
+              onEnd={handleEnd}
+            />
+          </div>
+        </>
+      )}
     </div>
+    <div className="w-[25%] flex items-center text-center justify-center">
+      <ul className='w-[100%] p-[20px]'>
+        {items.map((item, index) => (
+          <li
+            key={item.id}
+            className={`flex items-center p-[5px] rounded-md ${activeIndex === index ? 'bg-gradient-to-b from-green-500 to-green-700 text-white' : ''}`}
+          >
+            <span className='text-[18px] font-thin w-[30%]'>{item.id}</span>
+            <span className='ml-2 text-[20px] font-light'>{item.amount}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
   );
 };
 

@@ -8,7 +8,7 @@ const delay = (duration, callback) => {
   }, duration);
 };
 
-const Quiz = ({ data, questionNumber, setQuestionNumber, setTimeOut }) => {
+const Quiz = ({ data, questionNumber, setQuestionNumber, setStop }) => {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState('answer');
@@ -35,7 +35,7 @@ const Quiz = ({ data, questionNumber, setQuestionNumber, setTimeOut }) => {
       } else {
         wrongAnswer();
         delay(1000, () => {
-          setTimeOut(true);
+          setStop(true);
         });
       }
     });
