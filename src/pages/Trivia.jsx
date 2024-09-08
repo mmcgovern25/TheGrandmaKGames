@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { mil } from '../assets';
 import Quiz from '../triviacomponents/Quiz';
+import Timer from '../triviacomponents/Timer';
 
 const Trivia = () => {
   const [activeIndex, setActiveIndex] = useState(14);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$0");
+  const [username, setUsername] = useState(null)
 
   // List of question values
   const items = useMemo(() => (
@@ -74,20 +76,33 @@ const Trivia = () => {
     setStop(true);
   };
 
+  const handleRestart = () => {
+    setQuestionNumber(1);
+    setStop(false);
+    setEarned("$0");
+  }
+
   return (
     <div className="h-screen flex">
+      {username}
       <div className="w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
         {stop ? (
           <div className="relative flex items-center justify-center h-full">
             <h1 className="text-center text-3xl font-bold text-white bg-black bg-opacity-70 p-4 rounded-lg">
               Still not a Champeen. You earned: {earned}
             </h1>
+            <button
+                onClick={handleRestart}
+                className="block mx-auto text-1.5xl border-2 border-[#1bac08] text-[#1bac08] p-2 rounded-md cursor-pointer transition-all duration-200 hover:bg-[#1bac08] hover:text-[#e1dec7] transform hover:scale-110 shadow-[0_0_8px_rgba(27,172,8,0.4)]"
+                >
+            Rematch?!
+          </button>
           </div>
         ) : (
           <>
             <div className='relative h-[50%]'>
               <div className='bottom-[10px] left-[80px] absolute w-[70px] h-[70px] text-[30px] font-bold rounded-full border-2 border-white border-solid flex items-center justify-center text-white'>
-                30
+                <Timer setStop={setStop} questionNumber={questionNumber} />
               </div>
             </div>
             <div className='h-[50%]'>
