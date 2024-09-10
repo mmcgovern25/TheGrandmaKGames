@@ -4,11 +4,11 @@ import Quiz from '../triviacomponents/Quiz';
 import Timer from '../triviacomponents/Timer';
 
 const Trivia = () => {
-  const [activeIndex, setActiveIndex] = useState(14);
+  const [activeIndex, setActiveIndex] = useState(14); // Start with the last item
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$0");
-  const [username, setUsername] = useState(null)
+  const [username, setUsername] = useState(null);
 
   // List of question values
   const items = useMemo(() => (
@@ -28,12 +28,18 @@ const Trivia = () => {
       { id: 13, amount: '$ 250,000' },
       { id: 14, amount: '$ 500,000' },
       { id: 15, amount: '$ 1,000,000' },
-    ].reverse()
+    ].reverse() // Reverse for display
   ), []);
 
   useEffect(() => {
-    console.log('Question Number:', questionNumber); // Debugging line
-    console.log('Items:', items); // Debugging line
+    // Update the activeIndex based on questionNumber
+    const index = items.findIndex(item => item.id === questionNumber);
+    if (index >= 0) {
+      setActiveIndex(index);
+    }
+  }, [questionNumber, items]);
+
+  useEffect(() => {
     if (questionNumber > 1) {
       const currentAmount = items.find((m) => m.id === questionNumber - 1)?.amount;
       if (currentAmount) {
@@ -70,33 +76,35 @@ const Trivia = () => {
   const handleEnd = (isCorrect, amount) => {
     if (isCorrect) {
       setEarned(amount);
+      setQuestionNumber(prev => prev + 1); // Move to the next question
     } else {
       setEarned("$0");
+      setStop(true);
     }
-    setStop(true);
   };
 
   const handleRestart = () => {
     setQuestionNumber(1);
     setStop(false);
     setEarned("$0");
-  }
+    setActiveIndex(items.length - 1); // Reset to the last item in the reversed list
+  };
 
   return (
     <div className="h-screen flex">
       {username}
       <div className="w-[75%] flex flex-col" style={{ backgroundImage: `url(${mil})`, backgroundSize: 'cover' }}>
         {stop ? (
-          <div className="relative flex items-center justify-center h-full">
+          <div className="relative flex flex-col items-center justify-center h-full">
             <h1 className="text-center text-3xl font-bold text-white bg-black bg-opacity-70 p-4 rounded-lg">
               Still not a Champeen. You earned: {earned}
             </h1>
             <button
-                onClick={handleRestart}
-                className="block mx-auto text-1.5xl border-2 border-[#1bac08] text-[#1bac08] p-2 rounded-md cursor-pointer transition-all duration-200 hover:bg-[#1bac08] hover:text-[#e1dec7] transform hover:scale-110 shadow-[0_0_8px_rgba(27,172,8,0.4)]"
-                >
-            Rematch?!
-          </button>
+              onClick={handleRestart}
+              className="block mt-4 text-1.5xl border-2 border-[#1bac08] text-[#1bac08] p-2 rounded-md cursor-pointer transition-all duration-200 hover:bg-[#1bac08] hover:text-[#e1dec7] transform hover:scale-110 shadow-[0_0_8px_rgba(27,172,8,0.4)]"
+            >
+              Play Again?
+            </button>
           </div>
         ) : (
           <>
