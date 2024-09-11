@@ -15,23 +15,23 @@ const Cardflip = () => {
   }
 
   return (
-    <div className='flex items-center justify-center bg-black h-[800px] cursor-pointer'>
-      <div className='flip-card w-[600px] h-[360px]' onClick={handleFlip}>
+    <div className='flex justify-center h-90vh p-4'>
+      <div className='flip-card w-full max-w-[600px] h-[360px] max-h-[360px]' onClick={handleFlip}>
         <motion.div
-          className='flip-card-inner w-[100%] h-[100%]'
+          className='flip-card-inner w-full h-full'
           initial={false}
           animate={{ rotateY: isFlipped ? 180 : 0 }}
           transition={{ duration: 0.6 }}
           onAnimationComplete={() => setIsAnimating(false)}
         >
-          <div className='flip-card-front w-[100%] h-[100%] bg-cover text-white rounded-lg p-4'
+          <div className='flip-card-front w-full h-full bg-cover text-white rounded-lg p-4'
             style={{ backgroundImage: `url(${exampleImg})` }}
           >
             <h1 className='text-2xl font-bold'>Sky</h1>
             <p>This is the paragraph.</p>
           </div>
 
-          <div className='flip-card-back w-[100%] h-[100%] bg-cover text-white rounded-lg p-4'
+          <div className='flip-card-back w-full h-full bg-cover text-white rounded-lg p-4'
             style={{ backgroundImage: `url(${exampleImg2})` }}
           >
             <h1 className='text-2xl font-bold'>Earth</h1>

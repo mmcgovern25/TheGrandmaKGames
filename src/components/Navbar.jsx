@@ -3,6 +3,7 @@ import logo from '../assets/logo.png';
 import { motion } from 'framer-motion';
 import MoonSVG from './MoonSVG';
 import SunSVG from './SunSVG';
+import '../extraCSS/input.css'
 import { Link } from 'react-router-dom';
 
 const containerVariants = {
@@ -61,8 +62,8 @@ const Navbar = ({ theme, setTheme }) => {
           ))}
         </motion.ul>
 
-          <input type='checkbox' id="darkmode-toggle"/>
-          <label onClick={toggle_mode} htmlFor="darkmode-toggle">
+          <input className='nav-input' type='checkbox' id="darkmode-toggle"/>
+          <label className='nav-label' onClick={toggle_mode} htmlFor="darkmode-toggle">
             <MoonSVG className='w-10 h-10'/>
             <SunSVG className='w-10 h-10'/>
           </label>
