@@ -1,8 +1,9 @@
 import React from 'react'
+import Cardflip from '../memcomponents/Cardflip'
 
 const MemoryLane = () => {
   return (
-    <div>MemoryLane</div>
+    <Cardflip />
   )
 }
 
