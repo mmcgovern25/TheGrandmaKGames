@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Cardflip from '../memcomponents/Cardflip';
-import { exampleImg, exampleImg2, memory, blueo, tiktaktoe } from '../assets';
+import { exampleImg, exampleImg2, memory, blueo, tiktaktoe, greencheck, redx } from '../assets';
 
 // Sample list of images and descriptions
 const images = [
@@ -16,6 +16,8 @@ const MemoryLane = () => {
   const [inputValue, setInputValue] = useState('');
   const [flipCard, setFlipCard] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0); // Track current image index
+  const [correctCount, setCorrectCount] = useState(0);
+  const [incorrectCount, setIncorrectCount] = useState(0); // Track the number of correct answers
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
@@ -28,6 +30,7 @@ const MemoryLane = () => {
   const handleCorrect = () => {
     setFlipCard(false); // Hide the card before showing the next one
     setInputValue(''); // Clear the input field
+    setCorrectCount((prevCount) => prevCount + 1); // Increment the correct count
 
     // Show next image after flip animation completes
     setTimeout(() => {
@@ -38,7 +41,8 @@ const MemoryLane = () => {
 
   const handleIncorrect = () => {
     setFlipCard(false); // Hide the card before showing the next one
-    setInputValue(''); // Clear the input field
+    setInputValue('');
+    setIncorrectCount((prevCount) => prevCount + 1);  // Clear the input field
 
     // Show next image after flip animation completes
     setTimeout(() => {
@@ -70,7 +74,7 @@ const MemoryLane = () => {
           placeholder="What happened here?"
           value={inputValue}
           onChange={handleInputValue}
-          className="h-[50px] text-center px-4 w-full max-w-xs border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="h-[50px] text-black text-center px-4 w-full max-w-xs border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-500"
         />
       </div>
 
@@ -80,6 +84,25 @@ const MemoryLane = () => {
       >
         Show Answer
       </button>
+
+      <div className='flex flex-row items-center mb-4'>
+        {Array.from({ length: correctCount }).map((_, index) => (
+          <img
+            key={index}
+            src={greencheck}
+            alt="green check"
+            className='w-[30px] h-[30px] mr-2' // Space between each check
+          />
+        ))}
+        {Array.from({ length: incorrectCount }).map((_, index) => (
+          <img
+            key={index}
+            src={redx}
+            alt="red X"
+            className='w-[30px] h-[30px] mr-2' // Space between each check
+          />
+        ))}
+      </div>
     </div>
   );
 };
