@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import '../extraCSS/memory.css';
-import { exampleImg, exampleImg2 } from '../assets';
 
-const Cardflip = ({ onFlip }) => {
+const Cardflip = ({ onFlip, frontImage, backText, frontText, onCorrect, onIncorrect }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -14,8 +13,7 @@ const Cardflip = ({ onFlip }) => {
     }
   }
 
-  // Use the provided onFlip callback if available
-  React.useEffect(() => {
+  useEffect(() => {
     if (onFlip) {
       handleFlip();
     }
@@ -32,17 +30,27 @@ const Cardflip = ({ onFlip }) => {
           onAnimationComplete={() => setIsAnimating(false)}
         >
           <div className='flip-card-front w-full h-full bg-cover text-white rounded-lg p-4'
-            style={{ backgroundImage: `url(${exampleImg})` }}
+            style={{ backgroundImage: `url(${frontImage})` }}
           >
-            <h1 className='text-2xl font-bold'>Sky</h1>
-            <p>This is the paragraph.</p>
+            <h1 className='text-2xl font-bold'>{frontText}</h1>
           </div>
 
-          <div className='flip-card-back w-full h-full bg-cover text-white rounded-lg p-4'
-            style={{ backgroundImage: `url(${exampleImg2})` }}
-          >
-            <h1 className='text-2xl font-bold'>Earth</h1>
-            <p>This is another paragraph.</p>
+          <div className='flip-card-back w-full h-full bg-white text-black rounded-lg p-4 flex flex-col items-center justify-center'>
+            <p className='text-xl mb-4'>{backText}</p>
+            <div className='flex space-x-4'>
+              <button
+                onClick={onCorrect}
+                className='p-[10px] rounded-md bg-gradient-to-b from-green-500 to-green-700 text-white transition-transform duration-300 transform active:scale-95 active:shadow-inner'
+              >
+                Correct
+              </button>
+              <button
+                onClick={onIncorrect}
+                className='p-[10px] rounded-md bg-gradient-to-b from-red-500 to-red-700 text-white transition-transform duration-300 transform active:scale-95 active:shadow-inner'
+              >
+                Incorrect
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -1,18 +1,50 @@
 import React, { useState } from 'react';
 import Cardflip from '../memcomponents/Cardflip';
+import { exampleImg, exampleImg2, memory, blueo, tiktaktoe } from '../assets';
+
+// Sample list of images and descriptions
+const images = [
+  { front: exampleImg, backText: 'This is the description for Sky.' },
+  { front: exampleImg2, backText: 'This is the description for Mountain.' },
+  { front: memory, backText: 'This is the description for memory.' },
+  { front: blueo, backText: 'This is the description for blueo.' },
+  { front: tiktaktoe, backText: 'This is the description for ttt.' },
+  // Add more images as needed
+];
 
 const MemoryLane = () => {
   const [inputValue, setInputValue] = useState('');
   const [flipCard, setFlipCard] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true); // Track whether the buttons are disabled
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // Track current image index
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleSubmit = () => {
-    setFlipCard(true); // Trigger the card flip
-    setIsDisabled(false); // Enable the buttons after submitting
+    setFlipCard(!flipCard);
+  };
+
+  const handleCorrect = () => {
+    setFlipCard(false); // Hide the card before showing the next one
+    setInputValue(''); // Clear the input field
+
+    // Show next image
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setFlipCard(true); // Show the new card
+    }, 600); // Delay to match flip animation duration
+  };
+
+  const handleIncorrect = () => {
+    setFlipCard(false); // Hide the card before showing the next one
+    setInputValue(''); // Clear the input field
+
+    // Show next image
+    setTimeout(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setFlipCard(true); // Show the new card
+    }, 600); // Delay to match flip animation duration
   };
 
   return (
@@ -22,7 +54,14 @@ const MemoryLane = () => {
       </div>
 
       <div className="w-full max-w-lg relative mb-4">
-        <Cardflip onFlip={flipCard} />
+        <Cardflip
+          onFlip={flipCard}
+          frontImage={images[currentImageIndex].front}
+          backText={images[currentImageIndex].backText}
+          frontText={images[currentImageIndex].frontText}
+          onCorrect={handleCorrect}
+          onIncorrect={handleIncorrect}
+        />
       </div>
 
       <div className="flex flex-col items-center w-full mb-4">
@@ -41,21 +80,6 @@ const MemoryLane = () => {
       >
         Submit Answer
       </button>
-
-      <div className="flex space-x-4">
-        <button
-          className={`flex items-center p-[10px] rounded-md ${isDisabled ? 'bg-green-500 bg-opacity-50 text-gray-600 cursor-not-allowed' : 'bg-gradient-to-b from-green-500 to-green-700 text-white'} transition-transform duration-300 transform active:scale-95 active:shadow-inner`}
-          disabled={isDisabled}
-        >
-          Correct?
-        </button>
-        <button
-          className={`flex items-center p-[10px] rounded-md ${isDisabled ? 'bg-red-500 bg-opacity-50 text-gray-600 cursor-not-allowed' : 'bg-gradient-to-b from-red-500 to-red-700 text-white'} transition-transform duration-300 transform active:scale-95 active:shadow-inner`}
-          disabled={isDisabled}
-        >
-          Incorrect?
-        </button>
-      </div>
     </div>
   );
 };
