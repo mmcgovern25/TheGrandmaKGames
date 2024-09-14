@@ -18,6 +18,8 @@ const MemoryLane = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0); // Track current image index
   const [correctCount, setCorrectCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0); // Track the number of correct answers
+  const [gameOver, setGameOver] = useState(false); // State to track if the game is over
+  const [modalMessage, setModalMessage] = useState(''); // State to store the modal message
 
   const handleInputValue = (e) => {
     setInputValue(e.target.value);
@@ -34,22 +36,64 @@ const MemoryLane = () => {
 
     // Show next image after flip animation completes
     setTimeout(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentImageIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % images.length;
+        if (nextIndex === 0) {
+          setGameOver(true); // End the game if all images have been shown
+        }
+        return nextIndex;
+      });
       setFlipCard(true); // Show the new card
     }, 600); // Delay to match flip animation duration
   };
 
   const handleIncorrect = () => {
     setFlipCard(false); // Hide the card before showing the next one
-    setInputValue('');
-    setIncorrectCount((prevCount) => prevCount + 1);  // Clear the input field
+    setInputValue(''); // Clear the input field
+    setIncorrectCount((prevCount) => prevCount + 1); // Increment the incorrect count
 
     // Show next image after flip animation completes
     setTimeout(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentImageIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % images.length;
+        if (nextIndex === 0) {
+          setGameOver(true); // End the game if all images have been shown
+        }
+        return nextIndex;
+      });
       setFlipCard(true); // Show the new card
     }, 600); // Delay to match flip animation duration
   };
+
+  const handleCloseModal = () => {
+    setGameOver(false); // Close the modal and restart the game if needed
+    setCurrentImageIndex(0);
+    setCorrectCount(0);
+    setIncorrectCount(0);
+    setModalMessage(''); // Reset the modal message
+  };
+
+  const totalCount = images.length; // Total number of images
+
+  // Determine the message based on the user's performance
+  React.useEffect(() => {
+    if (gameOver) {
+      const correctPercentage = (correctCount / totalCount) * 100;
+      let message = '';
+
+      if (correctCount === totalCount) {
+        message = 'Flawless victory. You are the undisputed CHAMPEEN!';
+      } else if (correctPercentage > 75) {
+        message = `Look at you go, you´re almost a Champeen! You got ${correctCount} out of ${totalCount} right.`;
+      } else if (correctPercentage < 50) {
+        message = `You clearly aren’t a Champeen. You only got ${correctCount} out of ${totalCount} right.`;
+      } else {
+        message = `You got ${correctCount} out of ${totalCount} right.`;
+      }
+
+      setModalMessage(message);
+    }
+  }, [gameOver, correctCount, totalCount]);
 
   return (
     <div className="flex flex-col items-center px-4">
@@ -99,10 +143,26 @@ const MemoryLane = () => {
             key={index}
             src={redx}
             alt="red X"
-            className='w-[30px] h-[30px] mr-2' // Space between each check
+            className='w-[30px] h-[30px] mr-2' // Space between each X
           />
         ))}
       </div>
+
+      {/* Modal for Game Over */}
+      {gameOver && (
+        <div className="fixed inset-0 flex items-center justify-center text-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 className="text-xl font-bold mb-4">Game Over</h2>
+            <p className="mb-4">{modalMessage}</p>
+            <button
+              onClick={handleCloseModal}
+              className='p-[10px] rounded-md bg-gradient-to-b from-green-500 to-green-700 text-white'
+            >
+              Restart
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
