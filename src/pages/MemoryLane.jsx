@@ -29,7 +29,7 @@ const MemoryLane = () => {
     setFlipCard(false); // Hide the card before showing the next one
     setInputValue(''); // Clear the input field
 
-    // Show next image
+    // Show next image after flip animation completes
     setTimeout(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
       setFlipCard(true); // Show the new card
@@ -40,7 +40,7 @@ const MemoryLane = () => {
     setFlipCard(false); // Hide the card before showing the next one
     setInputValue(''); // Clear the input field
 
-    // Show next image
+    // Show next image after flip animation completes
     setTimeout(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
       setFlipCard(true); // Show the new card
@@ -78,7 +78,7 @@ const MemoryLane = () => {
         onClick={handleSubmit}
         className='mb-4 flex items-center p-[10px] rounded-md bg-gradient-to-b from-green-500 to-green-700 text-white transition-transform duration-300 transform active:scale-95 active:shadow-inner'
       >
-        Submit Answer
+        Show Answer
       </button>
     </div>
   );
