@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import '../extraCSS/memory.css';
 import { exampleImg, exampleImg2 } from '../assets';
 
-const Cardflip = () => {
+const Cardflip = ({ onFlip }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -14,9 +14,16 @@ const Cardflip = () => {
     }
   }
 
+  // Use the provided onFlip callback if available
+  React.useEffect(() => {
+    if (onFlip) {
+      handleFlip();
+    }
+  }, [onFlip]);
+
   return (
     <div className='flex justify-center h-90vh p-4'>
-      <div className='flip-card w-full max-w-[600px] h-[360px] max-h-[360px]' onClick={handleFlip}>
+      <div className='flip-card w-full max-w-[600px] h-[360px] max-h-[360px]'>
         <motion.div
           className='flip-card-inner w-full h-full'
           initial={false}
@@ -41,6 +48,6 @@ const Cardflip = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Cardflip;
