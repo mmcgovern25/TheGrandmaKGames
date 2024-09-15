@@ -96,7 +96,7 @@ const MemoryLane = () => {
   }, [gameOver, correctCount, totalCount]);
 
   return (
-    <div className="flex flex-col items-center px-4">
+    <div className="mt-8 flex flex-col items-center px-4">
       <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-3xl bruno-ace-sc-regular mb-4">
         Memory Lane
       </div>

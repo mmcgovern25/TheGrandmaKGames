@@ -12,7 +12,7 @@ export default function GameOver({ winner, onRestart }) {
           onClick={onRestart}
           className="block mx-auto text-1.5xl border-2 border-[#1bac08] text-[#1bac08] p-2 rounded-md cursor-pointer transition-all duration-200 hover:bg-[#1bac08] hover:text-[#e1dec7] transform hover:scale-110 shadow-[0_0_8px_rgba(27,172,8,0.4)]"
         >
-          Rematch?!
+          Play Again
         </button>
       </p>
     </div>

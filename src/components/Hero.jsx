@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import ShamrockSVG from './ShamrockSVG';
+import Modal from './Modal'; // Import Modal
 
 const buttonVariants = {
   hover: {
@@ -25,13 +26,22 @@ const scrollVariants = {
         repeatType: 'loop',
         duration: 50, // Adjust the duration for the speed of the scrolling
         ease: 'linear',
-
       }
     }
   }
 };
 
 const Hero = ({ theme }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handlePlayButtonClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className='mb-12'>
       <div className='mt-20 flex flex-col justify-center items-center px-4'>
@@ -39,7 +49,7 @@ const Hero = ({ theme }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className={`bruno-ace-sc-regular text-1xl sm:text-2xl md:text-3xl lg:text-4xl sm:mb-2 md:mb-4 `}
+          className={`bruno-ace-sc-regular text-1xl sm:text-2xl md:text-3xl lg:text-4xl sm:mb-2 md:mb-4`}
         >
           Welcome to
         </motion.div>
@@ -61,6 +71,7 @@ const Hero = ({ theme }) => {
           variants={buttonVariants}
           whileHover="hover"
           className='px-4 py-2 sm:px-6 sm:py-3 bg-[#1bac08] text-white rounded'
+          onClick={handlePlayButtonClick}
         >
           Play
         </motion.button>
@@ -78,7 +89,7 @@ const Hero = ({ theme }) => {
           backgroundColor: 'black', // Ensure it's above other elements
           overflow: 'hidden' // Hide any overflow
         }}
-        className="mt-6 sm:mt-[1.5rem] md:mt-[1.6rem] lg:mt-[1.5rem]  whitespace-nowrap"
+        className="mt-6 sm:mt-[1.5rem] md:mt-[1.6rem] lg:mt-[1.5rem] whitespace-nowrap"
       >
         <motion.div
           initial='initial'
@@ -91,6 +102,9 @@ const Hero = ({ theme }) => {
           </span>
         </motion.div>
       </div>
+
+      {/* Conditionally render the Modal */}
+      {isModalOpen && <Modal onClose={closeModal} />}
     </div>
   );
 };

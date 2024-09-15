@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { mil } from '../assets';
-import { motion } from 'framer-motion';
 import Quiz from '../triviacomponents/Quiz';
 import Timer from '../triviacomponents/Timer';
 
 // Initial list of questions
 const initialQuestions = [
+  // Your initial questions here
   {
     id: 1,
     question: "What year did grandma graduate high school?",
@@ -73,7 +73,8 @@ const Trivia = () => {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$0");
-  const [questions, setQuestions] = useState(initialQuestions); // Initialize with the data
+  const [questions, setQuestions] = useState(initialQuestions);
+  const [completedAll, setCompletedAll] = useState(false);
 
   // List of question values
   const items = useMemo(() => (
@@ -96,19 +97,6 @@ const Trivia = () => {
     ].reverse() // Reverse for display
   ), []);
 
-  const buttonVariants = {
-    hover: {
-      scale: 1.1,
-      textShadow: "0px 0px 8px rgb(255,255,255)",
-      boxShadow: "0px 0px 8px rgb(255,255,255)",
-      transition: {
-        duration: 0.3,
-        repeat: Infinity,
-        repeatType: "mirror"
-      }
-    }
-  }
-
   useEffect(() => {
     // Update the activeIndex based on questionNumber
     const index = items.findIndex(item => item.id === questionNumber);
@@ -128,10 +116,10 @@ const Trivia = () => {
 
   // Shuffle function to randomize questions
   const shuffleQuestions = (questions) => {
-    const shuffled = [...questions]; // Create a copy of questions
+    const shuffled = [...questions];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
   };
@@ -139,8 +127,13 @@ const Trivia = () => {
   // Callback for handling the end of a quiz
   const handleEnd = (isCorrect, amount) => {
     if (isCorrect) {
-      setEarned(amount);
-      setQuestionNumber(prev => prev + 1); // Move to the next question
+      if (amount === '$1,000,000') {
+        setCompletedAll(true); // Set the completion state
+        setStop(true); // Stop the game
+      } else {
+        setEarned(amount);
+        setQuestionNumber(prev => prev + 1); // Move to the next question
+      }
     } else {
       setEarned("$0");
       setStop(true);
@@ -149,11 +142,12 @@ const Trivia = () => {
 
   // Handle restart with shuffled questions
   const handleShuffleRestart = () => {
-    const shuffledQuestions = shuffleQuestions(initialQuestions); // Shuffle questions
+    const shuffledQuestions = shuffleQuestions(initialQuestions);
     setQuestions(shuffledQuestions);
     setQuestionNumber(1);
     setStop(false);
     setEarned("$0");
+    setCompletedAll(false); // Reset completion state
     setActiveIndex(items.length - 1); // Reset to the last item in the reversed list
   };
 
@@ -162,6 +156,7 @@ const Trivia = () => {
     setQuestionNumber(1);
     setStop(false);
     setEarned("$0");
+    setCompletedAll(false); // Reset completion state
     setActiveIndex(items.length - 1); // Reset to the last item in the reversed list
   };
 
@@ -171,24 +166,24 @@ const Trivia = () => {
         {stop ? (
           <div className="relative flex flex-col items-center justify-center h-full">
             <h1 className="text-center text-3xl font-bold text-white bg-black bg-opacity-70 p-4 rounded-lg">
-              Still not a Champeen. You earned: {earned}
+              {earned === "$200" ? (
+                "We have a new CHAMPEEN! You won $1,000,000. Now go take your grandmother out for lunch!!"
+              ) : (
+                `Still not a Champeen. You earned: ${earned}`
+              )}
             </h1>
-            <motion.button
-          variants={buttonVariants}
-          onClick={handleShuffleRestart}
-          whileHover="hover"
-          className='px-4 py-2 mt-8 sm:px-6 sm:py-3 bg-[#1bac08] text-white rounded'
-        >
-          Shuffle questions and play again?
-        </motion.button>
-        <motion.button
-          variants={buttonVariants}
-          onClick={handleOrderRestart}
-          whileHover="hover"
-          className='px-4 mt-4 py-2 sm:px-6 sm:py-3 bg-[#1bac08] text-white rounded'
-        >
-          Same questions and play again?
-        </motion.button>
+            <button
+              onClick={handleShuffleRestart}
+              className='mt-4 mb-4 flex items-center p-[10px] rounded-md bg-gradient-to-b from-green-500 to-green-700 text-white transition-transform duration-300 transform active:scale-95 active:shadow-inner'
+            >
+              Shuffle questions and play again?
+            </button>
+            <button
+              onClick={handleOrderRestart}
+              className='mb-4 flex items-center p-[10px] rounded-md bg-gradient-to-b from-green-500 to-green-700 text-white transition-transform duration-300 transform active:scale-95 active:shadow-inner'
+            >
+              Same questions and play again?
+            </button>
           </div>
         ) : (
           <>
@@ -199,7 +194,7 @@ const Trivia = () => {
             </div>
             <div className='h-[50%]'>
               <Quiz
-                data={questions} // Use shuffled or initial questions here
+                data={questions}
                 questionNumber={questionNumber}
                 setStop={setStop}
                 setQuestionNumber={setQuestionNumber}
@@ -214,7 +209,7 @@ const Trivia = () => {
           {items.map((item, index) => (
             <li
               key={item.id}
-              className={`flex items-center p-[5px] rounded-md ${activeIndex === index ? 'bg-gradient-to-b from-green-500 to-green-700 text-white' : ''}`}
+              className={`flex items-center border p-[5px] rounded-md ${activeIndex === index ? 'bg-gradient-to-b from-green-500 to-green-700 text-white' : ''}`}
             >
               <span className='text-[18px] font-thin w-[30%]'>{item.id}</span>
               <span className='ml-2 text-[18px] font-light'>{item.amount}</span>
