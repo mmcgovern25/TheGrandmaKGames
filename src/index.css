@@ -59,6 +59,10 @@ main {
   stroke-linecap: round;
 }
 
+.text-indent {
+  text-indent: 1.5em; /* Adjust the value as needed */
+}
+
 
 @tailwind base;
 @tailwind components;

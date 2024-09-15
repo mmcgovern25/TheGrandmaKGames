@@ -42,7 +42,6 @@ const FeaturedGames = () => {
                 <div className="card-body">
                   <h1 className="card-title">{featuredGame.name}</h1>
                   <p className="card-info">{featuredGame.description}</p>
-                  <button className="card-btn">Play</button>
                 </div>
               </div>
             </SwiperSlide>
